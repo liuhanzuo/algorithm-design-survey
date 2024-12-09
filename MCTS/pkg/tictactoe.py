@@ -72,6 +72,12 @@ class TicTacToe:
     Get the ID of the last player
     """
     return 3 - self.playerJustMoved
+  
+  def UpdatePlayer(self):
+    """
+    Update the player
+    """
+    self.playerJustMoved = 3 - self.playerJustMoved
 
 
 def play_random_game(game_number, display=False):

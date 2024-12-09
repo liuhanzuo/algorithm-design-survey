@@ -1,4 +1,4 @@
-from mctss.mcts import playGame
+from mcts import playGame
 from multiprocessing import Pool
 from tqdm import tqdm
 import matplotlib.pyplot as plt

@@ -6,6 +6,8 @@ from pkg.node import Node
 from pkg.selection import selectionpolicy
 from multiprocessing import Pool
 from tqdm import tqdm
+from pkg.gui import TicTacToeGUI
+import tkinter as tk
 
 
 def policyagent(rootstate, itermax, verbose=False, selection="UCT"):
@@ -132,6 +134,37 @@ def playGame(game_number, verbose=False, iteration=80):
         print(str(state))
 
     return (winning, winner)
+
+def human_vs_ai(itermax=10, selection="UCT"):
+    """ Let a human play TicTacToe against the AI using the GUI. """
+    root = tk.Tk()
+    game = tictactoe.TicTacToe()
+    gui = TicTacToeGUI(root)
+    
+    def on_click(i, j):
+        index = i * 3 + j
+        if game.board[index] == 0:
+            game.DoMove(index)
+            gui.update_click(index)
+            print(index)
+            if game.HasWinning():
+                gui.show_winner()
+                return
+            elif not game.HasRemainingMove():
+                gui.show_draw()
+                return
+            ai_move = policyagent(rootstate=game, itermax=itermax, selection=selection)
+            game.DoMove(ai_move)
+            print(ai_move)
+            gui.update_click(ai_move)
+            if game.HasWinning():
+                gui.show_winner()
+            elif not game.HasRemainingMove():
+                gui.show_draw()
+
+    gui.on_click = on_click
+    root.mainloop()
+
 def main():
     """ Play a several game to the end using UCT for both players.
     """
@@ -167,4 +200,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    human_vs_ai()
+    # main()
