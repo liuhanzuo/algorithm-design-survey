@@ -62,27 +62,5 @@ def human_vs_ai(agent1, agent2):
 if __name__ == "__main__":
     agent1 = agent.AIAgent(train="UCT", test="UCT", itermax=100)
     agent1.train(1000)
-    agent2 = agent.AIAgent(train="UCT", test="UCT", itermax=10)
-    agent2.train(1000)
-    num_games = 1000
-    results_list = []
-    for _ in tqdm(range(num_games), desc="Playing Progress"):
-        results_list.append(playGame(agent1=agent1, agent2=agent2))
-    pos = 0
-    neg = 0
-    player1 = 0
-    player2 = 0
-    for result in results_list:
-        if result[0]:
-            pos += 1
-            if result[1] == 1:
-                player1 += 1
-            elif result[1]:
-                player2 += 1
-        else:
-            neg += 1
-    print("Number of positives: %d / %d" % (pos, num_games))
-    print("Number of negatives: %d / %d" % (neg, num_games))
-    print("Player1 wins: %2.2f%%" % (float(player1) / pos * 100))
-    print("Player2 wins: %2.2f%%" % (float(player2) / pos * 100))
-    # main()
+    agent2 = agent.HumanAgent()
+    human_vs_ai(agent1, agent2)
