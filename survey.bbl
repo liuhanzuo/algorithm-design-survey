@@ -1,0 +1,8 @@
+\begin{thebibliography}{1}
+
+\bibitem{UCT}
+David Tolpin and Solomon Shimony.
+\newblock Mcts based on simple regret.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence}, volume~26, pages 570--576, 2012.
+
+\end{thebibliography}
