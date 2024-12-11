@@ -73,19 +73,21 @@ class AIAgent:
 
     def play(self, game, gui = None, i = None, j = None):
         ai_move = self.agent.test_agent(rootstate=game)
-        game.DoMove(ai_move)
-        if gui:
-            gui.update_click(ai_move)
-        if game.HasWinning():
+        if game.board[ai_move] == 0:
+            game.DoMove(ai_move)
             if gui:
-                gui.show_winner()
-            return True
-        elif not game.HasRemainingMove():
-            if gui:
-                gui.show_draw()
-            return True
+                gui.update_click(ai_move)
+            if game.HasWinning():
+                if gui:
+                    gui.show_winner()
+                return True
+            elif not game.HasRemainingMove():
+                if gui:
+                    gui.show_draw()
+                return True
+        if game.board[ai_move] != 0:
+            return "Invalid Move"
         return False
-
 class HumanAgent:
     def __init__(self):
         pass
@@ -101,4 +103,28 @@ class HumanAgent:
             elif not game.HasRemainingMove():
                 gui.show_draw()
                 return True
+        if game.board[index] != 0:
+            return "Invalid Move"
+        return False
+class CombinedAgent:
+    def __init__(self, train="UCT", test="UCT", itermax=80):
+        self.ai_agent = Agent(train, test, itermax)
+        self.human_agent = HumanAgent()
+
+    def train(self, num_games):
+        self.ai_agent.train_agent(num_games=num_games)
+
+    def play(self, game, gui, i, j):
+        if self.ai_agent.play(game, gui, i, j) == "True":
+            return True
+        human_move= self.human_agent.play(game, gui, i, j)
+        while(human_move == "Invalid Move"):
+            human_move = self.human_agent.play(game, gui, i, j)
+        if human_move == "True":
+            return True
+        ai_move = self.ai_agent.play(game, gui, i, j)
+        while(ai_move == "Invalid Move"):
+            ai_move = self.ai_agent.play(game, gui, i, j)
+        if ai_move == "True":
+            return True
         return False

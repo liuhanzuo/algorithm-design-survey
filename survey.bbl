@@ -1,5 +1,15 @@
 \begin{thebibliography}{1}
 
+\bibitem{MCTSsurvey}
+Cameron~B Browne, Edward Powley, Daniel Whitehouse, Simon~M Lucas, Peter~I Cowling, Philipp Rohlfshagen, Stephen Tavener, Diego Perez, Spyridon Samothrakis, and Simon Colton.
+\newblock A survey of monte carlo tree search methods.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in games}, 4(1):1--43, 2012.
+
+\bibitem{coquelin2007bandit}
+Pierre-Arnaud Coquelin and R{\'e}mi Munos.
+\newblock Bandit algorithms for tree search.
+\newblock {\em arXiv preprint cs/0703062}, 2007.
+
 \bibitem{UCT}
 David Tolpin and Solomon Shimony.
 \newblock Mcts based on simple regret.

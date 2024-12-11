@@ -51,9 +51,9 @@ def human_vs_ai(agent1, agent2):
     gui = TicTacToeGUI(root)
     def on_click(i, j):
         if agent1.play(game, gui, i, j):
-            return
+                return
         if agent2.play(game, gui, i, j):
-            return
+                return
 
     gui.on_click = on_click
     root.mainloop()
