@@ -13,7 +13,7 @@ if __name__ == "__main__":
     total_results2 = []
     total_results3 = []
     for iteration in test_iterations:
-        agent2 = agent.AIAgent(train="beta", test="reward", itermax=iteration)
+        agent2 = agent.AIAgent(train="UCB1tuned", test="reward", itermax=iteration)
         agent2.train(1000)
         results = []
         for _ in tqdm(range(number_of_games), desc="Playing Progress"):
@@ -35,5 +35,5 @@ if __name__ == "__main__":
     plt.title('Win Percentage vs Iterations') 
     plt.legend()
     plt.grid(True)
-    plt.savefig('reward_beta.png')
+    plt.savefig('reward_UCB1tuned.png')
     plt.show()

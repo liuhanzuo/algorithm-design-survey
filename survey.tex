@@ -1,4 +1,5 @@
-\documentclass{article}
+\documentclass[11pt]{article}
+\usepackage{fullpage}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -12,6 +13,26 @@
 \usepackage{float}
 \usepackage{tikz}
 \usepackage{tikz-qtree}
+\makeatletter
+\newenvironment{breakablealgorithm}
+  {% \begin{breakablealgorithm}
+   \begin{center}
+     \refstepcounter{algorithm}% New algorithm
+     \hrule height.8pt depth0pt \kern2pt% \@fs@pre for \@fs@ruled
+     \renewcommand{\caption}[2][\relax]{% Make a new \caption
+       {\raggedright\textbf{\ALG@name~\thealgorithm} ##2\par}%
+       \ifx\relax##1\relax % #1 is \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##2}%
+       \else % #1 is not \relax
+         \addcontentsline{loa}{algorithm}{\protect\numberline{\thealgorithm}##1}%
+       \fi
+       \kern2pt\hrule\kern2pt
+     }
+  }{% \end{breakablealgorithm}
+     \kern2pt\hrule\relax%
+   \end{center}
+  }
+\makeatother
 \begin{document}
 \title{A Dive to MCTS}
 \author{liuhanzuo}
@@ -54,7 +75,7 @@ those for the most promising moves) becoming more accurate as the tree is built.
 To be more specific, we will introduce some typical algorithm and list the corresponding result, also explain the intuition behind the algorithm.
 \subsection{General MCTS}
 The general MCTS algorithm is as follows:
-\begin{algorithm}[H]
+\begin{breakablealgorithm}
     \caption{General MCTS}
     \begin{algorithmic}[1]
         \Function{MCTS}{$s_0$}
@@ -67,7 +88,7 @@ The general MCTS algorithm is as follows:
         \EndFunction
     \end{algorithmic}
     \label{alg:general_mcts}
-\end{algorithm}
+\end{breakablealgorithm}
 Basically, we have four steps:
 \begin{enumerate}
     \item \texttt{Selection}: Start from the root point, we use a policy -- child selecting policy to select the next node to expand. (run the \texttt{TreePolicy} function)
@@ -108,7 +129,7 @@ Here let's consider the intuition for the UCT algorithm.\\
     \item As a comparison to reward-based MCTS, the UCT algorithm solve the problem of insufficient exploration of node, which often cause reward-based MCTS to get stuck in a local minimum. Moreover, it consider the $Q$ value and the visited times of the node, which is more reasonable.
 \end{itemize}
 Now we show the psuedo code for the UCT algorithm: (\cite{MCTSsurvey} is our reference).
-\begin{algorithm}[H]
+\begin{breakablealgorithm}
     \caption{UCT}
     \begin{algorithmic}[1]
         \Function{UCT}{$s_0$}
@@ -155,7 +176,7 @@ Now we show the psuedo code for the UCT algorithm: (\cite{MCTSsurvey} is our ref
         \EndFunction
     \end{algorithmic}
     \label{alg:uct}
-\end{algorithm}
+\end{breakablealgorithm}
 \section{Experiment}
 In this part, to test the performance of different algorithms, I implement some games, train the model with certain epochs and let different algorithm to play against in the game.\\
 The definitions are as follows:
@@ -201,6 +222,7 @@ In this part, we will introduce more algorithms based on the UCB/UCT algorithm.\
 \subsection{Bandit Algorithm}
 The definitions we used are as follows:
 \begin{itemize}
+    \item $X_{i,n_i}=\frac{1}{n_i}\sum_{t=1}^{n_i}x_t$
     \item \(X_{d',n_{d'}}\): The reward received at node \(d'\) after \(n_{d'}\) visits.
     \item \(n_d\): The number of times the node of depth \(d\) in the optimal branch is reached.
     \item \(n\): The first instant when the optimal leaf is reached.
@@ -209,7 +231,7 @@ The definitions we used are as follows:
     \item \[B_{i,p,n_i}=^\text{def}X_{i,n_i}+\sqrt{\frac{2\log(p)}{n_i}}\]
 \end{itemize}
 The pseudeo Code for bandit algorithm is as follows:
-\begin{algorithm}[H]
+\begin{breakablealgorithm}
     \caption{Bandit Algorithm}
     \begin{algorithmic}[1]
         \For {$n\ge 1$} 
@@ -219,8 +241,13 @@ The pseudeo Code for bandit algorithm is as follows:
                 \State Select node $i_d$ as the children $j$ of node $i_{d-1}$ that maximizes $B_{j,n_{i_{d-1}},n_j}$
             \EndFor
         \EndFor
+        \State receive reward $x_n\sim^{\text{iid}}X_{i_D}$
+        \For {$d=D\cdots 0$}
+            \State Update the number of visits $n_{i_d}=n_{i_d}+1$
+            \State Update the bound $B_{i_d,n_{i_{d-1}},n_{i_d}}$
+        \EndFor
     \end{algorithmic}
-\end{algorithm}
+\end{breakablealgorithm}
 Coquelin and Munos propose ﬂat UCB which effectively treats the leaves of the search tree as a single multiarmed bandit problem.\cite{coquelin2007bandit} This is distinct from ﬂat Monte Carlo search, in which the actions for a given state are uniformly sampled and no tree is built. Coquelin and Munos demonstrate that ﬂat UCB retains the adaptivity of standard UCT while improving its regret
 bounds in certain worst cases where UCT is overly optimistic.\\
 Intuitionlly, UCT may spend many time exploring an area that there is no best reward. Let's provide an example: the Monte Carlo tree has $m$ stages, while the $i$-th stage has a decision to get a reward of $\frac{m-(i+1)}{m}$ directly, while in the $m$th stage, you could get a reward of $1$. However, since the UCT algorithm will tend to visit the first stage with a reward of $\frac{m-1}{m}$, it will cost the UCT algorithm many times to explore the last stage whose reward is 1. (It will take UCT $O(\exp(\exp m))$ time).\\
@@ -244,7 +271,116 @@ n \geq \exp(\exp(\cdots \exp(2) \cdots)) \quad (\text{composition of } D - 1 \te
 \]
 Thus, although UCT algorithm has asymptotically regret \(O(\log(n))\) in \(n\), (or \(O(\sqrt{n})\) for the square root sequence), the transitory regret is \(\Omega(\exp(\exp(\cdots \exp(2) \cdots)))\) (or \(\Omega(\exp(\exp(D)))\) in the square root sequence).\\
 The reason for this bad behavior is that the algorithm is too optimistic (it does not explore enough and may take a very long time to discover good branches that looked initially bad) since the bounds (1) and (2) are not true upper bounds.\\
-
+\section{Learning in MCTS}
+\subsection{Temporal Difference Learning}
+The Temporal Difference (TD) learning algorithm \cite{tesauro1995temporal} is a model-free reinforcement learning algorithm that learns the value function by bootstrapping. Based on the Bellman equation, which states that the value of a state is equal to the immediate reward plus the discounted value of the next state. Also, it uses the difference between the estimated value and the target value to update the value function.\\
+Here we show the psuedo code for the TD learning algorithm:
+\begin{breakablealgorithm}
+    \caption{Temporal Difference Learning}
+    \begin{algorithmic}[1]
+        \Function{TD}{$s_0$}
+            \State initialize the value function $V(s)$
+            \State $s\gets s_0$
+            \While{$s$ is not a terminal state}
+                \State choose $a$ from $A(s)$
+                \State $s'\gets f(s,a)$
+                \State $r\gets R(s,a,s')$
+                \State $V(s)\gets V(s)+\alpha(r+\gamma V(s')-V(s))$
+                \State $s\gets s'$
+            \EndWhile
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:td}
+\end{breakablealgorithm} 
+the algorithm \ref{alg:td} shows a typical kind of TD learning algorithm. The $\alpha$ is the learning rate, $\gamma$ is the discount factor. $r$ refers to the immediate reward at current state and $s'$ is the next state.\\
+\textbf{Intuition} The main difference between the TD learning algorithm and the MCTS algorithm is that the TD learning algorithm learns the value function by bootstrapping, which means that TD does not need a model of the environment. It will obtain the reward by the environment and update the value function.\\
+\textbf{Problems} Gerald Tesauro proposes that \cite{tesauro1991practical} the TD learning algorithm has a problem of high variance. The reason is that the TD learning algorithm uses the reward received from the environment to update the value function. The reward is often noisy and may not be accurate. This leads to a high variance in the value function. Additionally. In fact, TD methods can suffer from instability and divergence, especially when combined with function approximation and off-policy learning.\\
+As a result, when Gerald Tesauro trains the TD learning algorithm to play backgammon, his network (a feedforward fully-connected architecture with either no hidden
+units, or a single hidden layer with between 10 and 40 hidden units) had only $40\%$ to $60\%$ win rate against the best human players.\\
+The TDMC algorithm is given by Yasuhiro OSAKI \cite{5035641}.\\
+\textbf{Intuition} The main idea of TDMC is to use the Monte Carlo method to estimate the value function and approximate the winning rate for each state without knowing the actual action. The main difference between TDMC and TD is that TDMC uses Monte Carlo simulations to estimate the value function. This approach reduces the variance in the value function estimation by averaging the results of multiple simulations. By running multiple simulations from a given state, TDMC can obtain a more accurate estimate of the expected reward, leading to better policy evaluation and improvement. This method combines the strengths of both Temporal Difference learning and Monte Carlo methods, providing a more stable and reliable learning process.\\
+Now we show the psuedo code for the TDMC algorithm:
+\begin{breakablealgorithm}
+    \caption{TDMC Algorithm}
+    \begin{algorithmic}[1]
+        \Function{TDMC}{$s_0, \alpha, \gamma, \lambda, T$}
+            \State initialize the feature weights $w$
+            \For{each episode}
+                \State initialize the state $s \gets s_0$
+                \State initialize the eligibility traces $e \gets 0$
+                \For{$t = 1, 2, \ldots, T-1$}
+                    \State observe features $x_t$ of state $s$
+                    \State compute the value $V(x_t, w) \gets x_t \cdot w$
+                    \State perform action $a$ and observe reward $r_t$ and next state $s'$
+                    \State simulate the environment to get $r_i$ for $i = t+1, \ldots, T$
+                    \State compute the return $R_t \gets \sum_{i=t}^{T-1} \gamma^{i-t} r_i$
+                    \State compute the n-step return $(n)R_t \gets r_t + \gamma r_{t+1} + \ldots + \gamma^{n-1} r_{t+n-1} + \gamma^n V(x_{t+n}, w)$
+                    \State compute the $\lambda$-return $\lambda R_t \gets (1-\lambda) \sum_{n=1}^{T-t} \lambda^{n-1} (n)R_t + \lambda^{T-t} R_t$
+                    \State compute the gradient $\nabla V(x_t, w)$
+                    \State update the eligibility traces $e \gets \gamma \lambda e + \nabla V(x_t, w)$
+                    \State update the weights $w \gets w + \alpha (\lambda R_t - V(x_t, w)) e$
+                    \State $s \gets s'$
+                \EndFor
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{breakablealgorithm}
+\section{UCT-based algorithm and Tree MCTS}
+\subsection{UCB1-tuned}
+The UCB1-Tuned algorithm is an enhancement suggested by Auer et al. \cite{auer2002finite} to tune the bounds of UCB1 more finely. It replaces the upper confidence bound $\sqrt{\frac{2 \ln n}{n_j}}$ with:
+\[
+\sqrt{\frac{\ln n}{n_j} \min \left(\frac{1}{4}, V_j(n_j) \right)}, V_j(s)=\left(\frac{1}{2}\sum_{\tau=1}^sX_{j,\tau}^2-\overline{X}_{j,s}^2+\sqrt{\frac{2\log t}{s}}\right)
+\]
+where \(V_j(n_j)\) is the empirical variance of the rewards obtained from action \(j\) after \(n_j\) plays. The UCB1-Tuned algorithm aims to reduce the exploration of suboptimal actions by incorporating the variance of the rewards into the confidence bounds.\\
+The pseudo code for the UCB1-Tuned algorithm is as follows:
+\begin{breakablealgorithm}
+    \caption{UCB1-Tuned}
+    \begin{algorithmic}[1]
+        \Function{UCB1-Tuned}{$s_0$}
+            \State create a node $v_0$ with state $s_0$
+            \While{within computational budget}
+                \State $v_l\gets$\Call{TreePolicy}{$v_0$}, $\Delta\gets$\Call{DefaultPolicy}{$s(v_l)$}
+                \State \Call{Backup}{$v_l,\Delta$}
+            \EndWhile
+            \State \Return \Call{BestChild}{$v_0$}
+        \EndFunction
+        \Function {TreePolicy}{$v$}
+            \While{$v$ is not a terminal node}
+                \If{$v$ is not fully expanded}
+                    \State \Return \Call{Expand}{$v$}
+                \Else
+                    \State $v\gets$\Call{BestChild}{$v$}
+                \EndIf
+            \EndWhile
+            \State \Return $v$
+        \EndFunction
+        \Function {Expand}{$v$}
+            \State choose $a\in A(s(v))$
+            \State add a new node $v'$ as a child of $v$
+            \State $s(v')=f(s(v),a)$
+            \State $a(v')=v$
+            \State \Return $v'$
+        \EndFunction
+        \Function {BestChild}{$v$}
+            \State \Return $$\arg\max_{v'\in \text{children}(v)}\left(\frac{Q(v')}{N(v')} + \sqrt{\frac{\ln N(v)}{N(v')} \min \left(\frac{1}{4}, \frac{V(v')}{N(v')} + \sqrt{\frac{2 \ln N(v)}{N(v')}} \right)}\right)$$
+        \EndFunction
+        \Function {DefaultPolicy}{$s$}
+            \While{$s$ is not a terminal state}
+                \State choose $a\in A(s)$
+                \State $s\gets f(s,a)$
+            \EndWhile
+            \State \Return $R(s)$
+        \EndFunction
+        \Function {Backup}{$v,\Delta$}
+            \While{$v$ is not null}
+                \State $N(v)\gets N(v)+1$
+                \State $Q(v)\gets Q(v)+\Delta$
+                \State $v\gets a(v)$
+            \EndWhile
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:ucb1_tuned}
+\end{breakablealgorithm}
+\bibliography{references}
 \bibliographystyle{plain}
-\bibliography{reference}
 \end{document}

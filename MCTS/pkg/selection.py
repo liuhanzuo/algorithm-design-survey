@@ -13,6 +13,8 @@ class selectionpolicy:
             return visitedSelectChild(node)
         elif self.selection == "beta":
             return betaSelectChild(node)
+        elif self.selection == "UCB1tuned":
+            return UCB1tunedSelectChild(node)
         else:
             raise NotImplementedError("Not implemented yet")
 def UCTSelectChild(node: Node):
@@ -23,6 +25,18 @@ def UCTSelectChild(node: Node):
     s = sorted(node.childNodes, key=lambda c: float(c.wins) /
                c.visits + math.sqrt(2 * math.log(node.visits) / c.visits))[-1]
     return s
+def V_j(n_j, X_j, node_visits):
+    mean_X_j = sum(X_j) / n_j
+    return (0.5 * sum(x**2 for x in X_j) - mean_X_j**2 + math.sqrt(2 * math.log(node_visits) / n_j))
+
+def UCB1tunedSelectChild(node: Node):
+        """ Use the UCB1-Tuned formula to select a child node. The UCB1-Tuned formula means to select the point with the highest value.
+        """
+        def UCB1tunedValue(c, node):
+            value = math.log(node.visits) / c.visits * 8* min(0.25, V_j(c.visits, [child.wins for child in node.childNodes], node.visits))
+            return float(c.wins) / c.visits + math.sqrt(max(0, value))
+        s = sorted(node.childNodes, key=lambda c: UCB1tunedValue(c, node))[-1]
+        return s
 def rewardSelectChild(node: Node):
         """ Use the reward formula to select a child node. The reward formula means to select the point with the highest value.
         """
