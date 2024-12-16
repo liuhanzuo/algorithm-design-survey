@@ -31,4 +31,4 @@ def human_vs_ai(itermax,selection):
     gui.on_click = on_click
     root.mainloop()
 if __name__ == "__main__":
-    human_vs_ai(40, "reward")
+    human_vs_ai(1000, "reward")
