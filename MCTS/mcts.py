@@ -14,6 +14,7 @@ def playGame(verbose=False, agent1=None, agent2=None):
         of UCT iterations (= simulations = tree nodes).
     """
     state = tictactoe.TicTacToe()
+    state.SetLastPlayer(random.choice([1, 2]))
     while (state.GetMoves() != []):
         if verbose:
             print(str(state))
@@ -60,7 +61,18 @@ def human_vs_ai(agent1, agent2):
 
 
 if __name__ == "__main__":
-    agent1 = agent.AIAgent(train="UCT", test="UCT", itermax=100)
+    agent1 = agent.AIAgent(train="reward", test="reward", itermax=40)
     agent1.train(1000)
-    agent2 = agent.HumanAgent()
-    human_vs_ai(agent1, agent2)
+    agent2 = agent.AIAgent(train="reward", test="reward", itermax=10)
+    agent2.train(1000)
+    results = []
+    number_of_games = 1000
+    for _ in tqdm(range(number_of_games), desc="Playing Progress"):
+        results.append(playGame(agent1=agent1, agent2=agent2)[1])
+    player1_wins = sum(1 for result in results if result == 1)
+    player2_wins = sum(1 for result in results if result == 2)
+    draw = sum(1 for result in results if result == None)
+    print("player1 wins: %d / %d" % (player1_wins, number_of_games))
+    print("player2 wins: %d / %d" % (player2_wins, number_of_games))
+    print("draw: %d / %d" % (draw, number_of_games)) 
+    # human_vs_ai(agent1, agent2)

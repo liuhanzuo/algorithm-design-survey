@@ -78,6 +78,8 @@ class TicTacToe:
     Update the player
     """
     self.playerJustMoved = 3 - self.playerJustMoved
+  def SetLastPlayer(self, player):
+    self.playerJustMoved = player
 
 
 def play_random_game(game_number, display=False):
