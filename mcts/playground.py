@@ -3,8 +3,25 @@ import random
 import pkg.agents as agents
 from pkg.gui import TicTacToeGUI
 import tkinter as tk
+from multiprocessing import Pool
+import pkg.gaming as gaming
+from tqdm import tqdm
 def human_vs_ai(itermax,selection):
     """ Let a human play TicTacToe against the AI using the GUI. """
+    number_of_games = 1000
+    agent = agents.Agent(itermax=itermax, verbose=False, selection=selection)
+    agent_ = agents.Agent(itermax=itermax, verbose=False, selection=selection)
+    for _ in tqdm(range(number_of_games), desc="Playing games"):
+        state = tictactoe.TicTacToe()
+        state.SetLastPlayer(random.choice([1, 2]))
+        while (state.GetMoves() != []):
+            if state.LastPlayer() == 1:
+                m = agent.predict(state)
+            else:
+                m = agent_.predict(state)
+            state.DoMove(m)
+
+            if state.HasWinning(): break
     root = tk.Tk()
     game = tictactoe.TicTacToe()
     gui = TicTacToeGUI(root)
@@ -20,7 +37,7 @@ def human_vs_ai(itermax,selection):
                 gui.show_winner()
                 return
         else:
-            m = agents.Agent(rootstate=game, itermax=itermax, verbose=False, selection=selection)
+            m = agent.predict(game)
             print("m",m)
             game.DoMove(m)
             gui.game = game.Clone()
@@ -30,5 +47,11 @@ def human_vs_ai(itermax,selection):
                 return
     gui.on_click = on_click
     root.mainloop()
+def huamn_vs_human():
+    root = tk.Tk()
+    gui = TicTacToeGUI(root)
+    root.mainloop()
+
 if __name__ == "__main__":
-    human_vs_ai(1000, "reward")
+    human_vs_ai(80, "reward")
+    # huamn_vs_human()
