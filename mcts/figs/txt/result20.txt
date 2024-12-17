@@ -1,0 +1,40 @@
+UCT vs UCT, UCT wins: 32.82%
+UCT vs UCT, UCT wins: 34.10%
+UCT vs UCT, Draws: 33.08%
+
+UCT vs UCB1tuned, UCT wins: 32.72%
+UCT vs UCB1tuned, UCB1tuned wins: 31.99%
+UCT vs UCB1tuned, Draws: 35.29%
+
+UCT vs reward, UCT wins: 36.78%
+UCT vs reward, reward wins: 31.21%
+UCT vs reward, Draws: 32.01%
+
+UCT vs visited, UCT wins: 61.45%
+UCT vs visited, visited wins: 21.08%
+UCT vs visited, Draws: 17.47%
+
+UCB1tuned vs UCB1tuned, UCB1tuned wins: 31.30%
+UCB1tuned vs UCB1tuned, UCB1tuned wins: 32.58%
+UCB1tuned vs UCB1tuned, Draws: 36.12%
+
+UCB1tuned vs reward, UCB1tuned wins: 35.67%
+UCB1tuned vs reward, reward wins: 30.16%
+UCB1tuned vs reward, Draws: 34.17%
+
+UCB1tuned vs visited, UCB1tuned wins: 60.84%
+UCB1tuned vs visited, visited wins: 21.52%
+UCB1tuned vs visited, Draws: 17.64%
+
+reward vs reward, reward wins: 34.96%
+reward vs reward, reward wins: 34.81%
+reward vs reward, Draws: 30.23%
+
+reward vs visited, reward wins: 57.57%
+reward vs visited, visited wins: 24.13%
+reward vs visited, Draws: 18.30%
+
+visited vs visited, visited wins: 43.60%
+visited vs visited, visited wins: 45.89%
+visited vs visited, Draws: 10.51%
+
