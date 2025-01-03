@@ -53,5 +53,5 @@ def huamn_vs_human():
     root.mainloop()
 
 if __name__ == "__main__":
-    human_vs_ai(80, "reward")
+    human_vs_ai(150, "UCT")
     # huamn_vs_human()

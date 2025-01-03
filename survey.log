@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.27)  15 DEC 2024 21:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.27)  2 JAN 2025 12:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -94,6 +94,17 @@ LaTeX Info: Redefining \Relbar on input line 971.
 \mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
+) (c:/texlive/2023/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks29
 ) (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
@@ -107,7 +118,7 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks24
+\KV@toks@=\toks30
 ) (c:/texlive/2023/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/trig.sty
@@ -228,20 +239,20 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip54
+\Hy@SectionHShift=\skip57
 ) (c:/texlive/2023/texmf-dist/tex/latex/algorithms/algorithm.sty
 Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
  (c:/texlive/2023/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count286
-\float@exts=\toks25
+\float@exts=\toks31
 \float@box=\box53
-\@float@everytoks=\toks26
+\@float@everytoks=\toks32
 \@floatcapt=\box54
 ) (c:/texlive/2023/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\@float@every@algorithm=\toks27
+\@float@every@algorithm=\toks33
 \c@algorithm=\count287
 ) (c:/texlive/2023/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
@@ -252,19 +263,19 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \c@ALG@line=\count288
 \c@ALG@rem=\count289
 \c@ALG@nested=\count290
-\ALG@tlm=\skip55
-\ALG@thistlm=\skip56
+\ALG@tlm=\skip58
+\ALG@thistlm=\skip59
 \c@ALG@Lnr=\count291
 \c@ALG@blocknr=\count292
 \c@ALG@storecount=\count293
 \c@ALG@tmpcounter=\count294
-\ALG@tmplength=\skip57
+\ALG@tmplength=\skip60
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (c:/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count295
 \lst@gtempboxa=\box55
-\lst@token=\toks28
+\lst@token=\toks34
 \lst@length=\count296
 \lst@currlwidth=\dimen156
 \lst@column=\count297
@@ -292,7 +303,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
  (c:/texlive/2023/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (c:/texlive/2023/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (c:/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (c:/texlive/2023/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (c:/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks29
+\pgfutil@everybye=\toks35
 \pgfutil@tempdima=\dimen160
 \pgfutil@tempdimb=\dimen161
 ) (c:/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
@@ -304,10 +315,10 @@ Package: pgf 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2023/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (c:/texlive/2023/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (c:/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks30
-\pgfkeys@temptoks=\toks31
+\pgfkeys@pathtoks=\toks36
+\pgfkeys@temptoks=\toks37
  (c:/texlive/2023/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks32
+\pgfkeys@tmptoks=\toks38
 ))
 \pgf@x=\dimen162
 \pgf@y=\dimen163
@@ -325,9 +336,9 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \c@pgf@countb=\count304
 \c@pgf@countc=\count305
 \c@pgf@countd=\count306
-\t@pgf@toka=\toks33
-\t@pgf@tokb=\toks34
-\t@pgf@tokc=\toks35
+\t@pgf@toka=\toks39
+\t@pgf@tokb=\toks40
+\t@pgf@tokc=\toks41
 \pgf@sys@id@count=\count307
  (c:/texlive/2023/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
@@ -366,9 +377,9 @@ Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 \pgfmath@dimen=\dimen172
 \pgfmath@count=\count310
 \pgfmath@box=\box58
-\pgfmath@toks=\toks36
-\pgfmath@stack@operand=\toks37
-\pgfmath@stack@operation=\toks38
+\pgfmath@toks=\toks42
+\pgfmath@stack@operand=\toks43
+\pgfmath@stack@operation=\toks44
 ) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count311
 )) (c:/texlive/2023/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
@@ -451,8 +462,8 @@ Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen199
 \pgffor@skip=\dimen256
-\pgffor@stack=\toks39
-\pgffor@toks=\toks40
+\pgffor@stack=\toks45
+\pgffor@toks=\toks46
 )) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
  (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
@@ -513,119 +524,380 @@ File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgftree@lastchildx=\dimen285
 \pgftree@lastchildy=\dimen286
 )) (c:/texlive/2023/texmf-dist/tex/latex/tikz-qtree/tikz-qtree.tex
-\@result=\toks41
-\child@list=\toks42
-\root@node=\toks43
-)) (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+\@result=\toks47
+\child@list=\toks48
+\root@node=\toks49
+)) (c:/texlive/2023/texmf-dist/tex/latex/mdframed/mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+ (c:/texlive/2023/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (c:/texlive/2023/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-02-20 L3 programming layer (loader) 
+ (c:/texlive/2023/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count327
 \l__pdf_internal_box=\box69
+))
+Package: xparse 2024-02-18 L3 Experimental document command parser
+) (c:/texlive/2023/texmf-dist/tex/latex/zref/zref-abspage.sty
+Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
+ (c:/texlive/2023/texmf-dist/tex/latex/zref/zref-base.sty
+Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
+ (c:/texlive/2023/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count328
+Package zref Info: New property: abspage on input line 67.
+) (c:/texlive/2023/texmf-dist/tex/latex/needspace/needspace.sty
+Package: needspace 2010/09/12 v1.3d reserve vertical space
+)
+\mdf@templength=\skip61
+\c@mdf@globalstyle@cnt=\count329
+\mdf@skipabove@length=\skip62
+\mdf@skipbelow@length=\skip63
+\mdf@leftmargin@length=\skip64
+\mdf@rightmargin@length=\skip65
+\mdf@innerleftmargin@length=\skip66
+\mdf@innerrightmargin@length=\skip67
+\mdf@innertopmargin@length=\skip68
+\mdf@innerbottommargin@length=\skip69
+\mdf@splittopskip@length=\skip70
+\mdf@splitbottomskip@length=\skip71
+\mdf@outermargin@length=\skip72
+\mdf@innermargin@length=\skip73
+\mdf@linewidth@length=\skip74
+\mdf@innerlinewidth@length=\skip75
+\mdf@middlelinewidth@length=\skip76
+\mdf@outerlinewidth@length=\skip77
+\mdf@roundcorner@length=\skip78
+\mdf@footenotedistance@length=\skip79
+\mdf@userdefinedwidth@length=\skip80
+\mdf@needspace@length=\skip81
+\mdf@frametitleaboveskip@length=\skip82
+\mdf@frametitlebelowskip@length=\skip83
+\mdf@frametitlerulewidth@length=\skip84
+\mdf@frametitleleftmargin@length=\skip85
+\mdf@frametitlerightmargin@length=\skip86
+\mdf@shadowsize@length=\skip87
+\mdf@extratopheight@length=\skip88
+\mdf@subtitleabovelinewidth@length=\skip89
+\mdf@subtitlebelowlinewidth@length=\skip90
+\mdf@subtitleaboveskip@length=\skip91
+\mdf@subtitlebelowskip@length=\skip92
+\mdf@subtitleinneraboveskip@length=\skip93
+\mdf@subtitleinnerbelowskip@length=\skip94
+\mdf@subsubtitleabovelinewidth@length=\skip95
+\mdf@subsubtitlebelowlinewidth@length=\skip96
+\mdf@subsubtitleaboveskip@length=\skip97
+\mdf@subsubtitlebelowskip@length=\skip98
+\mdf@subsubtitleinneraboveskip@length=\skip99
+\mdf@subsubtitleinnerbelowskip@length=\skip100
+ (c:/texlive/2023/texmf-dist/tex/latex/mdframed/md-frame-0.mdf
+File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
+)
+\mdf@frametitlebox=\box70
+\mdf@footnotebox=\box71
+\mdf@splitbox@one=\box72
+\mdf@splitbox@two=\box73
+\mdf@splitbox@save=\box74
+\mdfsplitboxwidth=\skip101
+\mdfsplitboxtotalwidth=\skip102
+\mdfsplitboxheight=\skip103
+\mdfsplitboxdepth=\skip104
+\mdfsplitboxtotalheight=\skip105
+\mdfframetitleboxwidth=\skip106
+\mdfframetitleboxtotalwidth=\skip107
+\mdfframetitleboxheight=\skip108
+\mdfframetitleboxdepth=\skip109
+\mdfframetitleboxtotalheight=\skip110
+\mdffootnoteboxwidth=\skip111
+\mdffootnoteboxtotalwidth=\skip112
+\mdffootnoteboxheight=\skip113
+\mdffootnoteboxdepth=\skip114
+\mdffootnoteboxtotalheight=\skip115
+\mdftotallinewidth=\skip116
+\mdfboundingboxwidth=\skip117
+\mdfboundingboxtotalwidth=\skip118
+\mdfboundingboxheight=\skip119
+\mdfboundingboxdepth=\skip120
+\mdfboundingboxtotalheight=\skip121
+\mdf@freevspace@length=\skip122
+\mdf@horizontalwidthofbox@length=\skip123
+\mdf@verticalmarginwhole@length=\skip124
+\mdf@horizontalspaceofbox=\skip125
+\mdfsubtitleheight=\skip126
+\mdfsubsubtitleheight=\skip127
+\c@mdfcountframes=\count330
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count331
+\c@mdf@env@i=\count332
+\c@mdf@env@ii=\count333
+\c@mdf@zref@counter=\count334
+Package zref Info: New property: mdf@pagevalue on input line 895.
+) (c:/texlive/2023/texmf-dist/tex/latex/pgfplots/pgfplots.sty (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
+ (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks50
+\t@pgfplots@tokb=\toks51
+\t@pgfplots@tokc=\toks52
+\pgfplots@tmpa=\dimen287
+\c@pgfplots@coordindex=\count335
+\c@pgfplots@scanlineindex=\count336
+ (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)
+Package pgfplots: loading complementary utilities for your pgf version...
+\t@pgf@toka=\toks53
+\t@pgf@tokb=\toks54
+\t@pgf@tokc=\toks55
+(c:/texlive/2023/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_pgfutil-common-lists.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count337
+) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count338
+\t@pgfplotstable@a=\toks56
+) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count339
+ (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.tex))) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen288
+\pgfdecoratedremainingdistance=\dimen289
+\pgfdecoratedinputsegmentcompleteddistance=\dimen290
+\pgfdecoratedinputsegmentremainingdistance=\dimen291
+\pgf@decorate@distancetomove=\dimen292
+\pgf@decorate@repeatstate=\count340
+\pgfdecorationsegmentamplitude=\dimen293
+\pgfdecorationsegmentlength=\dimen294
+)
+\tikz@lib@dec@box=\box75
+) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (c:/texlive/2023/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.contourlua.code.tex)
+\pgfplots@numplots=\count341
+\pgfplots@xmin@reg=\dimen295
+\pgfplots@xmax@reg=\dimen296
+\pgfplots@ymin@reg=\dimen297
+\pgfplots@ymax@reg=\dimen298
+\pgfplots@zmin@reg=\dimen299
+\pgfplots@zmax@reg=\dimen300
+) (c:/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (c:/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+\c@defn=\count342
+\c@thm=\count343
+ (c:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip128
+\fb@frw=\dimen301
+\fb@frh=\dimen302
+\FrameRule=\dimen303
+\FrameSep=\dimen304
 ) (./survey.aux)
 \openout1 = `survey.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
-LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
+LaTeX Font Info:    ... okay on input line 57.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count328
-\scratchdimen=\dimen287
-\scratchbox=\box70
-\nofMPsegments=\count329
-\nofMParguments=\count330
-\everyMPshowfont=\toks44
-\MPscratchCnt=\count331
-\MPscratchDim=\dimen288
-\MPnumerator=\count332
-\makeMPintoPDFobject=\count333
-\everyMPtoPDFconversion=\toks45
+\scratchcounter=\count344
+\scratchdimen=\dimen305
+\scratchbox=\box76
+\nofMPsegments=\count345
+\nofMParguments=\count346
+\everyMPshowfont=\toks57
+\MPscratchCnt=\count347
+\MPscratchDim=\dimen306
+\MPnumerator=\count348
+\makeMPintoPDFobject=\count349
+\everyMPtoPDFconversion=\toks58
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 36.
+Package hyperref Info: Link coloring OFF on input line 57.
  (./survey.out) (./survey.out)
 \@outlinefile=\write4
 \openout4 = `survey.out'.
 
-\c@lstlisting=\count334
-LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
- (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
+\c@lstlisting=\count350
+
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
+ on input line 57.
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+(c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 79.
- [2]
-Underfull \hbox (badness 10000) in paragraph at lines 122--125
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 100.
+ [2] [3]
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
-[3] [4]
-Underfull \hbox (badness 10000) in paragraph at lines 191--220
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 213--216
 
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 221--222
+[5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 271--274
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 322--325
 
  []
 
-[7] [8]
+[8] [9] [10] [11] [12]
+Underfull \hbox (badness 10000) in paragraph at lines 508--513
 
-LaTeX Warning: Citation `auer2002finite' on page 9 undefined on input line 330.
+ []
 
-[9] (./survey.bbl [10]) [11] (./survey.aux)
+[13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 557--558
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 559--560
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 568--571
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 583--597
+
+ []
+
+<mcts/figs/40/UCT vs UCB1tuned2.png, id=222, 462.528pt x 346.896pt>
+File: mcts/figs/40/UCT vs UCB1tuned2.png Graphic file (type png)
+<use mcts/figs/40/UCT vs UCB1tuned2.png>
+Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned2.png  used on input line 628.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/80/UCT vs UCB1tuned2.png, id=224, 462.528pt x 346.896pt>
+File: mcts/figs/80/UCT vs UCB1tuned2.png Graphic file (type png)
+<use mcts/figs/80/UCT vs UCB1tuned2.png>
+Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned2.png  used on input line 634.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/120/UCT vs UCB1tuned2.png, id=225, 462.528pt x 346.896pt>
+File: mcts/figs/120/UCT vs UCB1tuned2.png Graphic file (type png)
+<use mcts/figs/120/UCT vs UCB1tuned2.png>
+Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned2.png  used on input line 640.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+[16
+pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.644 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.644 \end{figure}
+                  
+pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.644 \end{figure}
+                  ]
+<mcts/figs/40/UCT vs UCB1tuned1.png, id=233, 462.528pt x 346.896pt>
+File: mcts/figs/40/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/40/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned1.png  used on input line 648.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/80/UCT vs UCB1tuned1.png, id=234, 462.528pt x 346.896pt>
+File: mcts/figs/80/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/80/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned1.png  used on input line 654.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/120/UCT vs UCB1tuned1.png, id=235, 462.528pt x 346.896pt>
+File: mcts/figs/120/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/120/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned1.png  used on input line 660.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+ (./survey.bbl [17
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                                <./mcts/figs/40/UCT vs UCB1tuned2.png> <./mcts/figs/80/UCT vs UCB1tuned2.png> <./mcts/figs/120/UCT vs UCB1tuned2.png> <./mcts/figs/40/UCT vs UCB1tuned1.png> <./mcts/figs/80/UCT vs UCB1tuned1.png> <./mcts/figs/120/UCT vs UCB1tuned1.png>] [18]) [19] (./survey.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `survey.out' has not changed.
-(rerunfilecheck)             Checksum: B172DE094F715704ADBAC42AF57D6934;2134.
+(rerunfilecheck)             Checksum: D4AA8A1930A1264FAA25A8A9780090C4;2812.
  ) 
 Here is how much of TeX's memory you used:
- 22431 strings out of 474137
- 406823 string characters out of 5748517
- 1942190 words of memory out of 5000000
- 44340 multiletter control sequences out of 15000+600000
+ 33596 strings out of 474137
+ 769712 string characters out of 5748517
+ 1946190 words of memory out of 5000000
+ 55298 multiletter control sequences out of 15000+600000
  567544 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,6n,93p,824b,674s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,9n,93p,1395b,676s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on survey.pdf (11 pages, 273077 bytes).
+Output written on survey.pdf (19 pages, 499356 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 48 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 367 PDF objects out of 1000 (max. 8388607)
+ 291 compressed objects within 3 object streams
+ 82 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
