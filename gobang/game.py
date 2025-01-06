@@ -1,86 +1,114 @@
-from tkinter import *
-from Board import *
-from evaluation import *
-import time
+from Board import Board
+from Players import Human, UCB1tunedAI, UCTAI, visitedAI, UCTtunedAI
+
+from datetime import datetime
+from tqdm import tqdm
+from multiprocessing import Pool
+
+
 class Game:
-    def black_init(self):
-        pass
-    def white_init(self):
-        self.AI_player=1
-        self.human_player=-1
+
     def __init__(self):
-        self.tk=Tk()
-        self.current_player=1
-        self.human_player=1
-        self.AI_player=-1
-        self.chosen=0
-        self.tk.title("Gobang")
-        self.tk.resizable(0,0)
-        self.tk.update()
-        self.bg=PhotoImage(file="board.png")
-        w=self.bg.width()
-        h=self.bg.height()
-        self.canvas=Canvas(self.tk,width=w,height=h,highlightthickness=0)
-        self.canvas.create_image(0,0,image=self.bg,anchor='nw')
-        # choose black/white
-        self.recid1=self.canvas.create_rectangle(20,20,220,100,fill="black")
-        self.recid2=self.canvas.create_text(90, 60, text="Black", font=("Arial", 22),fill="white")
-        self.recid3=self.canvas.create_rectangle(320,20,520,100,fill="white")
-        self.recid4=self.canvas.create_text(390, 60, text="White", font=("Arial", 22),fill="black")
-        self.canvas.bind_all('<Button-1>',self.choose)
-        self.bd=Board()
-        self.ev=evaluator()
-        self.canvas.pack()
-    def choose(self,evt):
-        if evt.x>=20 and evt.x<=220 and evt.y>=20 and evt.y<=100: #black
-            self.black_init()
-            self.chosen=1
-        if evt.x>=320 and evt.x<=520 and evt.y>=20 and evt.y<=100:
-            self.white_init()
-            self.chosen=1
-        if self.chosen==0:
-            return 0
-        self.canvas.delete(self.recid1)
-        self.canvas.delete(self.recid2)
-        self.canvas.delete(self.recid3)
-        self.canvas.delete(self.recid4)
-        self.canvas.unbind('<Button-1>')    
-        self.canvas.bind_all('<Button-1>',self.user_click)
-        return 1
-    def user_click(self,evt):
-        if self.current_player != self.human_player:
-            return False
-        x=(int)((evt.x-41.5)/(42.8)+0.5)
-        y=(int)((evt.y-41.5)/(42.8)+0.5)
-        if self.bd.move(self.canvas,self.human_player,x,y):
-            self.current_player=-self.current_player
-            return True
-        return False
-    def component_move(self):
-        if self.current_player!=self.AI_player:
-            return False
-        ls=self.ev.Getpos(self.bd,-1,4)[0]
-        if(self.bd.move(self.canvas,self.AI_player,ls[0],ls[1])):
-            self.current_player=-self.current_player
-            time.sleep(0.2)
-            return True
-        return False
-    def mainloop(self):
-        ENDG=0
-        while 1:
-            if self.current_player==self.AI_player:
-                self.component_move()
-            time.sleep(0.1)
-            if(self.bd.EndGame()):
-                self.tk.update()
-                ENDG=self.bd.EndGame()
-                time.sleep(3)
+        self.board = Board()    # 初始棋盘(黑子先手)
+
+    def graphic(self):
+        """绘制棋盘"""
+        width, height = self.board.size, self.board.size       # 棋盘大小
+
+        print("   黑子(-1) 用 X 表示\t\t\t白子(1) 用 O 表示\n")
+
+        for x in range(width):      # 打印行坐标
+            print("{0:8}".format(x), end='')
+
+        print('\r\n')
+        for i in range(height):
+            print("{0:4d}".format(i), end='')
+            for j in range(width):
+                if self.board.board[i, j] == -1:
+                    print('X'.center(8), end='')
+                elif self.board.board[i, j] == 1:
+                    print('O'.center(8), end='')
+                else:
+                    print('-'.center(8), end='')
+            print('\r\n\r\n')
+
+    def start_play(self):
+        human, ai = Human(), UCB1tunedAI()
+        self.graphic()
+
+        while True:
+
+            self.board, move_pos = human.action(self.board)
+            print(move_pos)
+            game_result = self.board.game_over(move_pos)
+
+            self.graphic()
+            if game_result == 'win' or game_result == 'tie':    # 游戏结束
+                print('黑子落棋: {}, 黑子(-1)胜利！游戏结束！'.format(move_pos)) if game_result == 'win' \
+                    else print('黑子落棋: {}, 平局！游戏结束！'.format(move_pos))
                 break
-            self.tk.update()
-        self.canvas.delete(ALL)
-        if ENDG==1:
-            self.canvas.create_text(300,400,text="BLACK WINS!",font="Helvetica 40", fill="blue")
-        else:
-            self.canvas.create_text(300,400,text="WHITE WINS!",font="Helvetica 40", fill="blue")
-        self.tk.update()
-        time.sleep(20)
+            else:
+                print('黑子落棋: {}, 未分胜负, 游戏继续！'.format(move_pos))
+
+            # start_time = datetime.now()
+            self.board, move_pos = ai.action(self.board, move_pos)
+            print(move_pos)
+            # print(datetime.now() - start_time)
+            game_result = self.board.game_over(move_pos)
+            self.graphic()
+            if game_result == 'win' or game_result == 'tie':    # 游戏结束
+                print('白子落棋: {}, 白子(1)胜利！游戏结束！'.format(move_pos)) if game_result == 'win' \
+                    else print('白子落棋: {}, 平局！游戏结束！'.format(move_pos))
+                break
+            else:
+                print('白子落棋: {}, 未分胜负, 游戏继续！'.format(move_pos))
+
+def AIvsAI(playepoch=100):
+    ai1, ai2 = UCTtunedAI(), UCTAI()
+    board = Board()
+    flag = None
+    while True:
+        board, move_pos = ai1.action(board, None)
+        # print(move_pos)
+        game_result = board.game_over(move_pos)
+        # if game_result == 'win' or game_result == 'tie':    # 游戏结束
+        #     print('黑子落棋: {}, 黑子(-1)胜利！游戏结束！'.format(move_pos)) if game_result == 'win' \
+        #         else print('黑子落棋: {}, 平局！游戏结束！'.format(move_pos))
+        #     break
+        # else:
+        #     print('黑子落棋: {}, 未分胜负, 游戏继续！'.format(move_pos))
+        if game_result == "win":
+            flag = "win"
+            break
+        if game_result == "tie":
+            flag = "tie"
+            break
+        board, move_pos = ai2.action(board, move_pos)
+        # print(move_pos)
+        game_result = board.game_over(move_pos)
+        # if game_result == 'win' or game_result == 'tie':    # 游戏结束
+        #     print('白子落棋: {}, 白子(1)胜利！游戏结束！'.format(move_pos)) if game_result == 'win' \
+        #         else print('白子落棋: {}, 平局！游戏结束！'.format(move_pos))
+        #     break
+        # else:
+        #     print('白子落棋: {}, 未分胜负, 游戏继续！'.format(move_pos))
+        if game_result == "win":
+            flag = "lose"
+            break
+        if game_result == "tie":
+            flag = "tie"
+            break
+    return flag
+if __name__ == "__main__":
+    game = Game()
+    # game.start_play()
+    playepoch = 100
+    results = {"win": 0, "tie": 0, "lose": 0}
+    # for _ in tqdm(range(playepoch)):
+    #     result = AIvsAI()
+    #     results[result] += 1
+    pool = Pool(processes=8)
+    for result in tqdm(pool.imap_unordered(AIvsAI, range(playepoch)), total=playepoch):
+        results[result] += 1
+
+    print(f"Results after {playepoch} games: {results}")

@@ -376,6 +376,19 @@ Now we show the psuedo code for the TDMC algorithm:
         \EndFunction
     \end{algorithmic}
 \end{breakablealgorithm}
+\subsection{Single-Player MCTS}
+The article \cite{schadd2008single} points out that modern MCTS has been rarely used on single-player games. Thus, they modify the UCT and apply it in the SameGame.\\
+Firstly, they mentioned that traditional $A^*$ or $IDA^*$(a variation of $A^*$ that uses a depth-first search to avoid storing whole tree in the memory) search algorithm does not work well in this kind of task since "Both methods are heavily dependent on the quality of the evaluation function".\\
+SP-MCTS change the Seletion Strategy of UCT to 
+\[
+    \frac{Q(v')}{N(v')}+C\cdot\sqrt{\frac{\log N(v)}{N(v')}}+\sqrt{\frac{\sum_{u\text{ is v's descendent}}N(u)^2-Q(v')^2/N(v')+D}{N(v')}}
+\]
+Note that $\sum_{u\text{ is v's descendent}}N(u)^2-Q(v')^2/N(v')$ means the variants at the node $v$, representing the possible deviation of the child node.\\
+\textbf{Intuitions}: below we introduce the main difference of SP-MCTS and traiditional MCTS\\ 
+\texttt{Selection Policy} Comparing to two-player games, puzzle games(one player games) have a different score range. Typically, two-player games results in -1(lose), 0(draw) and 1(win), we can relax them into $[-1,1]$ when maximizing the win rate. However, since we can not define a win rate in puzzle games (actually we are maximizing reward we get), the final reward may have a higher upper bound(sometimes even unbounded). Thus we need properly find $C$ and $D$ to fit the reward range (equivalent to scale the reward interval back to $[-1,1]$).\\
+\texttt{Simulation Strategy}: A "TabuRandom" Strategy is used here to improve the quality of random simulation: randomly select a color, that kind of color is not allowed to play unless no other color can be played..\\
+\texttt{Back-Propogation Strategy}: We back-propogate: the average score of a node; the sum of the squared results; and the best score achieved so far.\\
+\texttt{Final Play}: We do not need to wait the response of another player. Thus we can search the whole process at the starter of the game.
 \section{UCT-based algorithm and Tree MCTS}
 \subsection{UCB1-tuned}
 The UCB1-Tuned algorithm is an enhancement suggested by Auer et al. \cite{auer2002finite} to tune the bounds of UCB1 more finely. It replaces the upper confidence bound $\sqrt{\frac{2 \ln n}{n_j}}$ with:
@@ -666,6 +679,22 @@ For more result, you can look at the repository, the \texttt{mcts/figs} director
 \subsection{Conclusion}
 From both the table and graph, we can see that UCT and UCB1-tuned have a state-of-the-art result, outperform other kinds of search algorithm. As the FPU mentioned, UCB1-tuned is indeed a better algorithm in application that can handle unexplored nodes and save memory better.\\
 Also, since tictactoe is a relative simple game and easy to get a draw if the agents have a strong prediction power, we can see that the draw rate is higher with a deeper search.
+\section{Gobang}
+\subsection{Introduction}
+In this task, we mainly combine the algorithm of UCTtuned(the algorithm that I finetuned) and UCT in the game of Gobang.\\
+Since the board of Gobang is larger than tictactoe, we can evaluate different kind of search algorithm's ability better.
+\subsection{New Algorithm}
+To balance the exploration weight for different nodes better, we combine the UCT and SP-MCTS algorithm. I notice that the main part tuned in SP-MCTS is the variance tail. Since we are playing a two-player game, we do not need a hyperparameter $D$ at the summation part. Instead of that, we multiple the variance tail with a hyperparameter $D$.
+\[
+    \arg\max_{v'\in\text{children(v)}}\left(\frac{Q(v')}{N(v')}+C\cdot\sqrt{\frac{\log N(v)}{N(v')}}+D\cdot var(\frac{N(u)\text{ where u is v's descendent}}{N(v)})\right)
+\]
+\subsection{Main Code}
+\begin{itemize}
+    \item \texttt{Board.py}: definition of the board, provide function for user move and board update etc.
+    \item \texttt{Node.py}: Basic MCTS node, used for tree updating
+    \item \texttt{MCTS.py}: MCTS Algorithms, used for decide node expansion and back-propogation algorithm
+    \item \texttt{Players.py}: Player Agents, used for playground GUI or AI vs AI evaluation 
+\end{itemize}
 \section{Conclusion}
 In this survey, we have delved into the intricacies of Monte Carlo Tree Search (MCTS), exploring its foundational concepts, various algorithmic implementations, and practical applications. We began by discussing the background of MCTS, including the essential elements of Markov Decision Processes (MDP) and Monte Carlo methods. This provided a solid foundation for understanding how MCTS operates and its relevance in decision-making processes.\\
 We then introduced the general MCTS algorithm, breaking down its four main steps: selection, expansion, simulation, and backpropagation. This was followed by a detailed examination of specific MCTS variants, such as reward-based MCTS, visited-based MCTS, and hybrid MCTS, highlighting their unique approaches to balancing exploration and exploitation.\\

@@ -29,6 +29,11 @@ Yasuhiro Osaki, Kazutomo Shibahara, Yasuhiro Tajima, and Yoshiyuki Kotani.
 \newblock An othello evaluation function based on temporal difference learning using probability of winning.
 \newblock In {\em 2008 IEEE Symposium On Computational Intelligence and Games}, pages 205--211, 2008.
 
+\bibitem{schadd2008single}
+Maarten~PD Schadd, Mark~HM Winands, H~Jaap Van Den~Herik, Guillaume MJ~B Chaslot, and Jos~WHM Uiterwijk.
+\newblock Single-player monte-carlo tree search.
+\newblock In {\em Computers and Games: 6th International Conference, CG 2008, Beijing, China, September 29-October 1, 2008. Proceedings 6}, pages 1--12. Springer, 2008.
+
 \bibitem{tesauro1991practical}
 Gerald Tesauro.
 \newblock Practical issues in temporal difference learning.

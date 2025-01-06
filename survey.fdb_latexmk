@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex survey"] 1735793648.56246 "survey.aux" "survey.bbl" "survey" 1735793657.30898 0
-  "./reference.bib" 1735620187 2826 592f134bb328d6a7543be4dbaa1d3b40 ""
+["bibtex survey"] 1736128061.28969 "survey.aux" "survey.bbl" "survey" 1736128111.49326 0
+  "./reference.bib" 1736058891 3241 33e0ea85c9ba09f35d166d9e5dda7a54 ""
   "c:/texlive/2023/texmf-dist/bibtex/bst/base/plain.bst" 1709022345 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "survey.aux" 1735793654 6450 dcfa07c7efb6575ebf23bddefc7ee061 "pdflatex"
+  "survey.aux" 1736128110 7097 5cb73e5e63685ae541cb727ac002ba17 "pdflatex"
   (generated)
   "survey.bbl"
   "survey.blg"
   (rewritten before read)
-["pdflatex"] 1735793649.70587 "d:/算法设计/algorithm-design-survey/survey.tex" "survey.pdf" "survey" 1735793657.31084 0
+["pdflatex"] 1736128107.86636 "d:/算法设计/algorithm-design-survey/survey.tex" "survey.pdf" "survey" 1736128111.49449 0
   "c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1709022794 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1709023943 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2023/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1709023474 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -245,17 +245,17 @@
   "c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1709029756 5518052 de2a91c664d75f3971de4662dc6b5a65 ""
   "c:/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1709029957 8220665 aeb883bac47b804e671f0c270a3632ff ""
   "c:/texlive/2023/texmf.cnf" 1709029734 713 e69b156964470283e0530f5060668171 ""
-  "d:/算法设计/algorithm-design-survey/survey.tex" 1735793633 47886 540ebca64a85f9efc6597242b3cc7a8a ""
+  "d:/算法设计/algorithm-design-survey/survey.tex" 1736128103 51189 47595df159528820294f2b49f6040277 ""
   "mcts/figs/120/UCT vs UCB1tuned1.png" 1734413197 40845 832188ed609a58ba49df5c4ede110c95 ""
   "mcts/figs/120/UCT vs UCB1tuned2.png" 1734413197 39520 301d04a353fe3b3ebd49696ded039744 ""
   "mcts/figs/40/UCT vs UCB1tuned1.png" 1734413197 44233 b06399ffb80d5f3532e97d126a93c54e ""
   "mcts/figs/40/UCT vs UCB1tuned2.png" 1734413197 41480 b596ae2254f4dd0926f31757cb1566d0 ""
   "mcts/figs/80/UCT vs UCB1tuned1.png" 1734413197 40932 56fa2ba0c17a5fc61ae3796423de024c ""
   "mcts/figs/80/UCT vs UCB1tuned2.png" 1734413197 38856 bd27668841a890cab95afd1a77eedfc8 ""
-  "survey.aux" 1735793654 6450 dcfa07c7efb6575ebf23bddefc7ee061 "pdflatex"
-  "survey.bbl" 1735793649 2153 606e76a131bdbcd86290ca4d8c729a10 "bibtex survey"
-  "survey.out" 1735793654 2812 d4aa8a1930a1264faa25a8a9780090c4 "pdflatex"
-  "survey.tex" 1735793633 47886 540ebca64a85f9efc6597242b3cc7a8a ""
+  "survey.aux" 1736128110 7097 5cb73e5e63685ae541cb727ac002ba17 "pdflatex"
+  "survey.bbl" 1736128063 2504 71f0037dc0cbf24b49db6df023fdde29 "bibtex survey"
+  "survey.out" 1736128110 3387 f0c7f9fa81a0110f66f9642f1d1c9246 "pdflatex"
+  "survey.tex" 1736128103 51189 47595df159528820294f2b49f6040277 ""
   (generated)
   "survey.aux"
   "survey.log"
