@@ -1,10 +1,10 @@
 from Board import Board
-from Players import Human, UCB1tunedAI, UCTAI, visitedAI, UCTtunedAI
+from Players import Human, UCB1tunedAI, UCTAI, visitedAI, UCTtunedAI, UCB1AI
 
 from datetime import datetime
 from tqdm import tqdm
 from multiprocessing import Pool
-
+import matplotlib.pyplot as plt
 
 class Game:
 
@@ -63,12 +63,13 @@ class Game:
             else:
                 print('白子落棋: {}, 未分胜负, 游戏继续！'.format(move_pos))
 
-def AIvsAI(playepoch=100):
-    ai1, ai2 = UCTtunedAI(), UCTAI()
+def AIvsAI(args):
+    ai1, ai2 = args
+    # ai1, ai2 = UCTtunedAI(), UCTAI()
     board = Board()
     flag = None
     while True:
-        board, move_pos = ai1.action(board, None)
+        board, move_pos = ai1.action(ai1, board, None)
         # print(move_pos)
         game_result = board.game_over(move_pos)
         # if game_result == 'win' or game_result == 'tie':    # 游戏结束
@@ -83,7 +84,7 @@ def AIvsAI(playepoch=100):
         if game_result == "tie":
             flag = "tie"
             break
-        board, move_pos = ai2.action(board, move_pos)
+        board, move_pos = ai2.action(ai2,board, move_pos)
         # print(move_pos)
         game_result = board.game_over(move_pos)
         # if game_result == 'win' or game_result == 'tie':    # 游戏结束
@@ -102,13 +103,39 @@ def AIvsAI(playepoch=100):
 if __name__ == "__main__":
     game = Game()
     # game.start_play()
-    playepoch = 100
-    results = {"win": 0, "tie": 0, "lose": 0}
-    # for _ in tqdm(range(playepoch)):
-    #     result = AIvsAI()
-    #     results[result] += 1
-    pool = Pool(processes=8)
-    for result in tqdm(pool.imap_unordered(AIvsAI, range(playepoch)), total=playepoch):
-        results[result] += 1
+    playepoch = 1000
+    
+    pool = Pool()
+    final_win = []
+    final_lose = []
+    final_draw = []
+    mcts_epochs = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000]
+    for mcts_epoch in mcts_epochs:
+        ai1=UCB1AI(mcts_times=mcts_epoch)
+        ai2=UCTAI(mcts_times=mcts_epoch)
+        results = {"win": 0, "tie": 0, "lose": 0}
+        args = [(ai1, ai2) for _ in range(playepoch)]
+        for result in tqdm(pool.imap_unordered(AIvsAI, args), total=playepoch, desc=f"{ai1} vs {ai2}, {playepoch} games"):
+            results[result] += 1
+        print(f"Results after {playepoch} games between {ai1} and {ai2}: {results}")
+        with open("result.txt", "a") as f:
+            f.write(f"Results after {playepoch} games between {ai1} and {ai2}: {results}\n")
+        final_win.append(results["win"]/playepoch)
+        final_lose.append(results["lose"]/playepoch)
+        final_draw.append(results["tie"]/playepoch)
 
-    print(f"Results after {playepoch} games: {results}")
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(mcts_epochs, final_win, label='Win Rate', marker='o')
+    plt.plot(mcts_epochs, final_lose, label='Lose Rate', marker='o')
+    plt.plot(mcts_epochs, final_draw, label='Draw Rate', marker='o')
+
+    plt.xlabel('MCTS Epochs')
+    plt.ylabel('Rate')
+    plt.title('AI vs AI Performance')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig("result.png")
+    plt.show()
+
+

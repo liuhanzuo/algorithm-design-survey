@@ -2,10 +2,9 @@ import numpy as np
 
 from Node import TreeNode
 
-mcts_times = 100    # MCTS次数
 
 
-def monte_carlo_tree_search(board, pre_pos):
+def monte_carlo_tree_search(board, pre_pos,mcts_times=None):
     root = TreeNode(board=board, pre_pos=pre_pos)    
     for i in range(mcts_times):     
         leaf = traverse(root)  
@@ -14,28 +13,34 @@ def monte_carlo_tree_search(board, pre_pos):
     return best_child(root).pre_pos
 
 
-def monte_carlo_tree_search_ucb1_tuned(board, pre_pos):
+def monte_carlo_tree_search_ucb1_tuned(board, pre_pos, mcts_times=None):
     root = TreeNode(board=board, pre_pos=pre_pos)    
     for i in range(mcts_times):    
         leaf = traverse_ucb1_tuned(root)  
         simulation_result = rollout(leaf)   
         backpropagate(leaf, simulation_result)
-    return best_child_ucb1_tuned(root).pre_pos
-def monte_carlo_tree_search_uct_tuned(board, pre_pos):
+    return best_child(root).pre_pos
+def monte_carlo_tree_search_uct_tuned(board, pre_pos, mcts_times=None):
     root = TreeNode(board=board, pre_pos=pre_pos)    
     for i in range(mcts_times):    
         leaf = traverse_uct_tuned(root)  
         simulation_result = rollout(leaf)   
         backpropagate(leaf, simulation_result)
     return best_child(root).pre_pos
-def monte_carlo_tree_search_visited(board, pre_pos):
+def monte_carlo_tree_search_visited(board, pre_pos, mcts_times=None):
     root = TreeNode(board=board, pre_pos=pre_pos)    
     for i in range(mcts_times):    
         leaf = traverse_visited(root)  
         simulation_result = rollout(leaf)   
         backpropagate(leaf, simulation_result)
     return best_child(root).pre_pos
-
+def monte_carlo_tree_search_ucb1(board, pre_pos, mcts_times=None):
+    root = TreeNode(board=board, pre_pos=pre_pos)    
+    for i in range(mcts_times):    
+        leaf = traverse_ucb1(root)  
+        simulation_result = rollout(leaf)   
+        backpropagate(leaf, simulation_result)
+    return best_child(root).pre_pos
 def traverse(node):
     """
     层次遍历该结点及其子结点，遇到叶子结点，遇到未完全扩展的结点则对其进行扩展
@@ -69,7 +74,13 @@ def traverse_visited(node):
         return node
     else:   
         return node.pick_univisted()
-
+def traverse_ucb1(node):
+    while node.fully_expanded():    
+        node = node.best_ucb1()
+    if node.non_terminal() is not None:     
+        return node
+    else:   
+        return node.pick_univisted()
 
 def rollout(node):
     while True:
@@ -100,17 +111,5 @@ def backpropagate(node, result):
 def best_child(node):
     visit_num_of_children = np.array(list([child.num_of_visit for child in node.children]))
     best_index = np.argmax(visit_num_of_children) 
-    node = node.children[best_index]
-    return node
-
-def best_child_ucb1_tuned(node):
-    visit_num_of_children = np.array(list([child.num_of_visit for child in node.children]))
-    total_visits = np.sum(visit_num_of_children)
-    best_index = np.argmax([
-        (child.num_of_wins[1] / child.num_of_visit) + 
-        np.sqrt((np.log(total_visits) / child.num_of_visit) * 
-        min(0.25, (np.var([child.num_of_wins[1] for child in node.children]) + np.sqrt(2 * np.log(total_visits) / child.num_of_visit))))
-        for child in node.children
-    ])
     node = node.children[best_index]
     return node
