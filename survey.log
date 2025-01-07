@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.27)  6 JAN 2025 09:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2024.2.27)  7 JAN 2025 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -687,6 +687,7 @@ File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 \c@defn=\count342
 \c@thm=\count343
+\c@lem=\count344
  (c:/texlive/2023/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip128
@@ -697,36 +698,36 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 ) (./survey.aux)
 \openout1 = `survey.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 57.
-LaTeX Font Info:    ... okay on input line 57.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
  (c:/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count344
+\scratchcounter=\count345
 \scratchdimen=\dimen305
 \scratchbox=\box76
-\nofMPsegments=\count345
-\nofMParguments=\count346
+\nofMPsegments=\count346
+\nofMParguments=\count347
 \everyMPshowfont=\toks57
-\MPscratchCnt=\count347
+\MPscratchCnt=\count348
 \MPscratchDim=\dimen306
-\MPnumerator=\count348
-\makeMPintoPDFobject=\count349
+\MPnumerator=\count349
+\makeMPintoPDFobject=\count350
 \everyMPtoPDFconversion=\toks58
 ) (c:/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -734,170 +735,208 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (c:/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 57.
+Package hyperref Info: Link coloring OFF on input line 58.
  (./survey.out) (./survey.out)
 \@outlinefile=\write4
 \openout4 = `survey.out'.
 
-\c@lstlisting=\count350
+\c@lstlisting=\count351
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into your preamble.
- on input line 57.
+ on input line 58.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 63.
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 62.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 63.
  (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 100.
- [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 140--141
-
- []
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 213--216
-
- []
-
-[5] [6]
-Underfull \hbox (badness 10000) in paragraph at lines 272--273
-
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 322--325
-
- []
-
-[8] [9] [10] [11] [12] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 521--526
-
- []
-
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 570--571
+{c:/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [2]
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 101.
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 572--573
+Underfull \vbox (badness 10000) detected at line 165
+ []
+
+[4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 218--221
 
  []
 
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 581--584
+[6] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 596--610
+Underfull \hbox (badness 10000) in paragraph at lines 307--310
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 333--334
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 346--348
+
+ []
+
+
+Overfull \hbox (0.63402pt too wide) in paragraph at lines 349--350
+[]\OT1/cmr/m/n/10.95 For the log-a-rith-mic con-fi-dence se-quence de-fined by (1), we sim-i-larly show $\OML/cmm/m/it/10.95 n[] \OMS/cmsy/m/n/10.95 ^^U []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n[]=\OT1/cmr/m/n/10.95 (2\OML/cmm/m/it/10.95 D[]\OT1/cmr/m/n/10.95 ))$,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 355--356
+
+ []
+
+[10] [11] [12] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 487--491
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 500--503
+
+ []
+
+[14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 567--569
 
  []
 
 [16]
-<mcts/figs/40/UCT vs UCB1tuned2.png, id=248, 462.528pt x 346.896pt>
+Underfull \hbox (badness 10000) in paragraph at lines 611--612
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--614
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 635--649
+
+ []
+
+<mcts/figs/40/UCT vs UCB1tuned2.png, id=267, 462.528pt x 346.896pt>
 File: mcts/figs/40/UCT vs UCB1tuned2.png Graphic file (type png)
 <use mcts/figs/40/UCT vs UCB1tuned2.png>
-Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned2.png  used on input line 641.
+Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned2.png  used on input line 680.
 (pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
-<mcts/figs/80/UCT vs UCB1tuned2.png, id=250, 462.528pt x 346.896pt>
+<mcts/figs/80/UCT vs UCB1tuned2.png, id=269, 462.528pt x 346.896pt>
 File: mcts/figs/80/UCT vs UCB1tuned2.png Graphic file (type png)
 <use mcts/figs/80/UCT vs UCB1tuned2.png>
-Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned2.png  used on input line 647.
+Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned2.png  used on input line 686.
 (pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
-<mcts/figs/120/UCT vs UCB1tuned2.png, id=251, 462.528pt x 346.896pt>
+<mcts/figs/120/UCT vs UCB1tuned2.png, id=270, 462.528pt x 346.896pt>
 File: mcts/figs/120/UCT vs UCB1tuned2.png Graphic file (type png)
 <use mcts/figs/120/UCT vs UCB1tuned2.png>
-Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned2.png  used on input line 653.
+Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned2.png  used on input line 692.
 (pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
-<mcts/figs/40/UCT vs UCB1tuned1.png, id=252, 462.528pt x 346.896pt>
-File: mcts/figs/40/UCT vs UCB1tuned1.png Graphic file (type png)
-<use mcts/figs/40/UCT vs UCB1tuned1.png>
-Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned1.png  used on input line 661.
-(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
-<mcts/figs/80/UCT vs UCB1tuned1.png, id=253, 462.528pt x 346.896pt>
-File: mcts/figs/80/UCT vs UCB1tuned1.png Graphic file (type png)
-<use mcts/figs/80/UCT vs UCB1tuned1.png>
-Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned1.png  used on input line 667.
-(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
-<mcts/figs/120/UCT vs UCB1tuned1.png, id=254, 462.528pt x 346.896pt>
-File: mcts/figs/120/UCT vs UCB1tuned1.png Graphic file (type png)
-<use mcts/figs/120/UCT vs UCB1tuned1.png>
-Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned1.png  used on input line 673.
-(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
- [17
+[18
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs...
+l.696 \end{figure}
+                  
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs...
+l.696 \end{figure}
+                  
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs...
+l.696 \end{figure}
+                  ]
+<mcts/figs/40/UCT vs UCB1tuned1.png, id=278, 462.528pt x 346.896pt>
+File: mcts/figs/40/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/40/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/40/UCT vs UCB1tuned1.png  used on input line 700.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/80/UCT vs UCB1tuned1.png, id=279, 462.528pt x 346.896pt>
+File: mcts/figs/80/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/80/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/80/UCT vs UCB1tuned1.png  used on input line 706.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+<mcts/figs/120/UCT vs UCB1tuned1.png, id=280, 462.528pt x 346.896pt>
+File: mcts/figs/120/UCT vs UCB1tuned1.png Graphic file (type png)
+<use mcts/figs/120/UCT vs UCB1tuned1.png>
+Package pdftex.def Info: mcts/figs/120/UCT vs UCB1tuned1.png  used on input line 712.
+(pdftex.def)             Requested size: 150.32504pt x 112.74515pt.
+ [19
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs...
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs...
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.678 F
-       or more result, you can look at the repository, the \texttt{mcts/figs... <./mcts/figs/40/UCT vs UCB1tuned2.png> <./mcts/figs/80/UCT vs UCB1tuned2.png> <./mcts/figs/120/UCT vs UCB1tuned2.png>] [18
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.695     \item \texttt
-                       {MCTS.py}: MCTS Algorithms, used for decide node expa...
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.695     \item \texttt
-                       {MCTS.py}: MCTS Algorithms, used for decide node expa...
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.695     \item \texttt
-                       {MCTS.py}: MCTS Algorithms, used for decide node expa... <./mcts/figs/40/UCT vs UCB1tuned1.png> <./mcts/figs/80/UCT vs UCB1tuned1.png> <./mcts/figs/120/UCT vs UCB1tuned1.png>] (./survey.bbl [19]) [20] (./survey.aux)
+l.723 \subsection
+                 {Experimental New SOTA Algorithm: UCT-tuned} <./mcts/figs/40/UCT vs UCB1tuned2.png> <./mcts/figs/80/UCT vs UCB1tuned2.png> <./mcts/figs/120/UCT vs UCB1tuned2.png> <./mcts/figs/40/UCT vs UCB1tuned1.png> <./mcts/figs/80/UCT vs UCB1tuned1.png> <./mcts/figs/120/UCT vs UCB1tuned1.png>] [20] (./survey.bbl [21
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1 \begin{thebibliography}{10}
+                               ] [22]) [23] (./survey.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `survey.out' has not changed.
-(rerunfilecheck)             Checksum: F0C7F9FA81A0110F66F9642F1D1C9246;3387.
+(rerunfilecheck)             Checksum: 7510DBD501258AD5F108139D10FCA815;3654.
  ) 
 Here is how much of TeX's memory you used:
- 33609 strings out of 474137
- 769898 string characters out of 5748517
- 1945190 words of memory out of 5000000
- 55304 multiletter control sequences out of 15000+600000
+ 34128 strings out of 474137
+ 783960 string characters out of 5748517
+ 1946190 words of memory out of 5000000
+ 55808 multiletter control sequences out of 15000+600000
  567544 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,93p,1395b,676s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,20n,93p,1470b,2252s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on survey.pdf (20 pages, 507668 bytes).
+Output written on survey.pdf (23 pages, 518293 bytes).
 PDF statistics:
- 395 PDF objects out of 1000 (max. 8388607)
- 317 compressed objects within 4 object streams
- 89 named destinations out of 1000 (max. 500000)
- 259 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 426 PDF objects out of 1000 (max. 8388607)
+ 345 compressed objects within 4 object streams
+ 104 named destinations out of 1000 (max. 500000)
+ 267 words of extra memory for PDF output out of 10000 (max. 10000000)
 

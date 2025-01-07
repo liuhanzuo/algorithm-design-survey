@@ -49,6 +49,7 @@
 \theoremstyle{definitionstyle}
 \newtheorem{defn}{Definition}
 \newtheorem{thm}{Theorem}
+\newtheorem{lem}{Lemma}
 % \newtheorem{proof}{Proof}
 \usepackage{framed}
 \newenvironment{framedminipage}
@@ -60,7 +61,7 @@
 \date{\today}
 \maketitle
 \begin{abstract}
-In this survey, we delve into the intricacies of Monte Carlo Tree Search (MCTS), a powerful algorithmic framework used for decision-making in various domains. We begin by exploring the foundational concepts of Markov Decision Processes (MDP) and Monte Carlo methods, which underpin MCTS. The survey then introduces the general MCTS algorithm, detailing its four main steps: selection, expansion, simulation, and backpropagation. We examine several MCTS variants, including reward-based, visited-based, and hybrid approaches, highlighting their unique strategies for balancing exploration and exploitation. Additionally, we discuss state-of-the-art algorithms such as UCT and its variations, including UCB1-tuned and Bayesian UCT, providing insights into their theoretical foundations and practical implementations. The integration of learning techniques, such as Temporal Difference (TD) learning and its Monte Carlo variant (TDMC), within the MCTS framework is also explored. Our experimental results, particularly in the context of the Tic-Tac-Toe game, demonstrate the effectiveness of advanced MCTS algorithms, showcasing their robustness and adaptability. This survey aims to provide a comprehensive understanding of MCTS and its applications, offering valuable insights for researchers and practitioners in the field.
+This survey explores the Monte Carlo Tree Search (MCTS) algorithm, a versatile decision-making framework with applications across various domains. It begins by reviewing the foundational concepts of Markov Decision Processes (MDP) and Monte Carlo methods, which form the basis of MCTS. The core MCTS algorithm is examined, highlighting its four main steps: selection, expansion, simulation, and backpropagation. Several MCTS variants are discussed, including reward-based, visited-based, and hybrid approaches, each balancing exploration and exploitation in unique ways. The survey also covers advanced algorithms such as Upper Confidence Bounds for Trees (UCT) and its variations, including UCB1-tuned and Bayesian UCT, emphasizing both theoretical underpinnings and practical implementations. Additionally, the integration of learning techniques like Temporal Difference (TD) learning, its Monte Carlo variant (TDMC), and Single Player MCTS (SP-MCTS) within MCTS is explored. Experimental results are presented in two parts: the first, demonstrating the effectiveness of advanced MCTS algorithms in the context of Tic-Tac-Toe; the second, introducing and comparing a new state-of-the-art experimental UCT-tuned algorithm for the Gobang game. This survey offers a comprehensive overview of MCTS and its applications, providing valuable insights for both researchers and practitioners in the field.
 \end{abstract}
 \section{BackGround}
 \subsection{MDP}
@@ -86,14 +87,14 @@ Where the definition is:
     \item $R_i$ is the reward received after taking action $a$ in state $s$.
     \item $Q(s,a)$ is the estimated Q-value of taking action $a$ in state $s$ (expected reward).
 \end{itemize}
-Until here, we have already reached the inner core of the whole system -- exploration. It means that how can we make a exploration strategy to adequately explore the state and get the corresponding Q-value(and the optimal policy). The Monte Carlo Methods is a good start for this problem.
+At this point, we have delved into the core aspect of the system: exploration. This involves devising a strategy to effectively explore the state space and accurately estimate the Q-values, thereby determining the optimal policy. Monte Carlo Methods provide a robust approach to address this challenge.
+\subsection{Advanced Works}
+AlphaGo\cite{silver2017mastering}, developed by DeepMind, marks a significant advancement in artificial intelligence, particularly in game playing. It integrates Monte Carlo Tree Search (MCTS) with deep neural networks to achieve superhuman performance in Go. The neural networks evaluate board positions and suggest moves, while MCTS explores promising move sequences, effectively balancing exploration and exploitation. AlphaGo's prowess was demonstrated in its 2016 victory against top Go player Lee Sedol. Subsequently, DeepMind introduced AlphaGo Zero, which learns to play Go from scratch without human data, relying solely on self-play to train its neural networks. This approach enables the discovery of novel strategies and tactics. AlphaGo Zero's success underscores the potential of combining reinforcement learning with advanced search algorithms, heralding future AI advancements.
+AlphaGo Zero, an evolution of AlphaGo, further refines the integration of MCTS with deep learning. Unlike its predecessor, which relied on human game data for training, AlphaGo Zero learns solely through self-play. It uses a deep neural network to evaluate board positions and predict move probabilities, which are then used to guide the MCTS simulations. The neural network is trained using the outcomes of these simulations, creating a feedback loop that continually improves both the network and the MCTS policy. This approach allows AlphaGo Zero to discover novel strategies and achieve superhuman performance without any human input, demonstrating the power of combining MCTS with deep reinforcement learning.
 \section{Monte Carlo Tree Search}
 \subsection{Introduction}
-This section introduces the family of algorithms known as Monte Carlo Tree Search (MCTS). MCTS rests on two
-fundamental concepts: that the true value of an action may be approximated using random simulation; and that
-these values may be used efﬁciently to adjust the policy towards a best-ﬁrst strategy. The algorithm progressively builds a partial game tree, guided by the results of previous exploration of that tree. The tree is used to estimate the values of moves, with these estimates (particularly
-those for the most promising moves) becoming more accurate as the tree is built.\\
-To be more specific, we will introduce some typical algorithm and list the corresponding result, also explain the intuition behind the algorithm.
+This section delves into the Monte Carlo Tree Search (MCTS) family of algorithms. MCTS is based on two core principles: approximating the true value of an action through random simulations and efficiently using these values to steer the policy towards a best-first strategy. The algorithm incrementally constructs a partial game tree, leveraging the outcomes of prior explorations to refine move value estimates. These estimates, especially for the most promising moves, become increasingly accurate as the tree expands.\\
+In this section, we will detail several representative algorithms, present their results, and elucidate the underlying intuitions.
 \subsection{General MCTS}
 The general MCTS algorithm is as follows:
 \begin{breakablealgorithm}
@@ -137,7 +138,7 @@ There is also some variant of this kind of MCTS:
     \item hybrid MCTS: mix the above two policy with a factor, balance the reward and visited times. Use a factor $\alpha$ to control the balance.
 \end{itemize}
 \subsection{SOTA:UCT}
-UCT is a state-of-the-art algorithm for Monte Carlo Tree Search in games and Markov Decision Processes that minimize the cumulative regret.\\
+UCT is a leading algorithm in Monte Carlo Tree Search for games and Markov Decision Processes, designed to minimize cumulative regret.\\
 \begin{framedminipage}
 \begin{defn}
 Scheme UCB(c) pulls arm $i$ that maixmizes upper confidence bound $b_i$ on the reward
@@ -162,12 +163,14 @@ Scheme UCB pulls arm $i$ that maximize $b_i$, where
 \]
 \end{defn}
 \end{framedminipage}
+\begin{framedminipage}
 \begin{thm}
 $\forall\eta\in(0,1),\gamma>1$, there is a $N$ such that for any numbers of sampling $n>N$, the simple regret of $\epsilon-$greedy is bounded by
 \[
     \mathbb{E}r_{\epsilon-greedy}\le2\gamma\sum_{i=1}^K\Delta_i\exp\left(\frac{-2\Delta_j^2n\epsilon}{\left(1+\sqrt{\frac{(K-1)\epsilon}{1-\epsilon}}\right)^2}\right)
 \]
 \end{thm}
+\end{framedminipage}
 \begin{proof}
 From Chernoff-Hoeffding bound, we have
 \[
@@ -186,6 +189,7 @@ we choose the adequate $\delta_i$ such that
 \]
 Then we meet our conclusion.
 \end{proof}
+\begin{framedminipage}
 \begin{thm}
 For every $0 < \eta < 1$ and $\gamma > 1$ there exists $N$ such that for any number of samples $n > N$ the simple regret of the UCB$\sqrt{\cdot}(c)$ sampling scheme is bounded from above as
 \[
@@ -193,6 +197,7 @@ For every $0 < \eta < 1$ and $\gamma > 1$ there exists $N$ such that for any num
 \]
 with probability at least $1 - \eta$.
 \end{thm}
+\end{framedminipage}
 \begin{proof}
 We start by bounding the probability $P_i$ that a non-optimal arm $i$ is chosen. Split the interval $[\mu_i, \mu_*]$ at $\mu_i + \frac{\Delta_i}{2}$. Apply the Chernoff-Hoeffding bound to get:
 \[
@@ -269,7 +274,7 @@ Now we show the psuedo code for the UCT algorithm: (\cite{MCTSsurvey} is our ref
     \label{alg:uct}
 \end{breakablealgorithm}
 \section{Algorithm Variations}
-In this part, we will introduce more algorithms based on the UCB/UCT algorithm.\\
+In this part, we will introduce more algorithms based on the UCT algorithm.\\
 \subsection{Bandit Algorithm}
 The definitions we used are as follows:
 \begin{itemize}
@@ -301,26 +306,52 @@ The pseudeo Code for bandit algorithm is as follows:
 \end{breakablealgorithm}
 Coquelin and Munos propose ﬂat UCB which effectively treats the leaves of the search tree as a single multiarmed bandit problem.\cite{coquelin2007bandit} This is distinct from ﬂat Monte Carlo search, in which the actions for a given state are uniformly sampled and no tree is built. Coquelin and Munos demonstrate that ﬂat UCB retains the adaptivity of standard UCT while improving its regret
 bounds in certain worst cases where UCT is overly optimistic.\\
-Intuitionlly, UCT may spend many time exploring an area that there is no best reward. Let's provide an example: the Monte Carlo tree has $m$ stages, while the $i$-th stage has a decision to get a reward of $\frac{m-(i+1)}{m}$ directly, while in the $m$th stage, you could get a reward of $1$. However, since the UCT algorithm will tend to visit the first stage with a reward of $\frac{m-1}{m}$, it will cost the UCT algorithm many times to explore the last stage whose reward is 1. (It will take UCT $O(\exp(\exp m))$ time).\\
-We now establish a lower bound on the number of times suboptimal rewards are received before getting the optimal 1 reward for the first time. Write \(n\) the first instant when the optimal leaf is reached. Write \(n_d\) the number of times the node (also written \(d\) making a slight abuse of notation) of depth \(d\) in the optimal branch is reached. Thus \(n = n_0\) and \(n_D = 1\). At depth \(D - 1\), we have \(n_{D-1} = 2\) (since action 2 has been chosen once in node \(D - 1\)).\\
-We consider both the logarithmic confidence sequence used in (1) and the square root sequence in (2). Let us start with the square root confidence sequence (2). At depth \(d - 1\), since the optimal branch is followed by the \(n\)-th trajectory, we have (writing \(d'\) the node resulting from action 2 in the node \(d - 1\)):
+\textbf{Intuition}: UCT may spend many time exploring an area that there is no best reward. Let's provide an example: the Monte Carlo tree has $m$ stages, while the $i$-th stage has a decision to get a reward of $\frac{m-(i+1)}{m}$ directly, while in the $m$th stage, you could get a reward of $1$. However, since the UCT algorithm will tend to visit the first stage with a reward of $\frac{m-1}{m}$, it will cost the UCT algorithm many times to explore the last stage whose reward is 1. (It will take UCT $O(\exp(\exp m))$ time).\\
+\begin{framedminipage}
+\begin{defn}
+$n_d$ is the number of times that a node of depth $d$ in the optimal branch is reached. 
+\end{defn}
+\begin{defn}
+$n$ is the first instant when the optimal leaf is reached. $D$ is the depth of the tree. $s$ is a constant used in the confidence sequence. 
+\end{defn}
+\begin{defn}
+$X_{d',n_{d'}}$ is the reward received at node $d'$ after $n_{d'}$ visits. 
+\end{defn}
+\begin{defn}
+$B_{i,p,n_i}$ is the upper confidence bound on the reward of arm $i$ after $n_i$ visits.
+\end{defn}
+\end{framedminipage}
+\begin{framedminipage}
+\begin{thm}
 \[
+    n_{d-1}\ge\exp(\frac{n_d}{2D^2})
+\]
+To conclude, UCT has asymptotically regret $O(\log(n))$ in $n$, (or $O(\sqrt{n})$ for the square root sequence)
+\end{thm}
+\end{framedminipage}
+\begin{proof}
+We now establish a lower bound on the number of times suboptimal rewards are received before obtaining the optimal reward for the first time. Let \(n\) denote the first instance when the optimal leaf is reached, and \(n_d\) the number of times the node at depth \(d\) in the optimal branch is reached. Thus, \(n = n_0\) and \(n_D = 1\). At depth \(D - 1\), we have \(n_{D-1} = 2\) since action 2 has been chosen once in node \(D - 1\).\\
+
+Consider the square root confidence sequence (2). At depth \(d - 1\), since the optimal branch is followed by the \(n\)-th trajectory, we have (denoting \(d'\) as the node resulting from action 2 in node \(d - 1\)):
+\[ 
 X_{d',n_{d'}} + \frac{s\sqrt{n_{d-1}}}{n_{d'}} \leq X_{d,n_d} + \frac{s\sqrt{n_{d-1}}}{n_d}.
 \]
-But \(X_{d',n_{d'}} = \frac{D - d}{D}\) and \(X_{d,n_d} \leq \frac{D - (d + 1)}{D}\) since the 1 reward has not been received before. We deduce that
-\[
+Given \(X_{d',n_{d'}} = \frac{D - d}{D}\) and \(X_{d,n_d} \leq \frac{D - (d + 1)}{D}\) since the optimal reward has not been received before, we deduce:
+\[ 
 \frac{1}{D} \leq \frac{s\sqrt{n_{d-1}}}{n_d}.
 \]
-Thus for the square root confidence sequence, we have \(n_{d-1} \geq \frac{n_d^2}{D^4}\). Now, by induction,
-\[
+Thus, for the square root confidence sequence, \(n_{d-1} \geq \frac{n_d^2}{D^4}\). By induction:
+\[ 
 n \geq \frac{n_1^2}{D^4} \geq \frac{n_2^2}{2D^4(1+2)} \geq \frac{n_3^2}{3D^4(1+2+3)} \geq \cdots \geq \frac{n_{D-1}^2}{(D-1)D^{2D(D-1)}}.
 \]
-Since \(n_{D-1} = 2\), we obtain \(n \geq \frac{2^{2D-1}}{D^{2D(D-1)}}\). This is a double exponential dependency with respect to \(D\). For example, for \(D = 20\), we have \(n \geq 10^{156837}\). Consequently, the regret is also \(\Omega(\exp(\exp(D)))\).\\
-Now, the usual logarithmic confidence sequence defined by (1) yields an even worse lower bound on the regret since we may show similarly that \(n_{d-1} \geq \exp(n_d/(2D^2))\) thus
-\[
+Since \(n_{D-1} = 2\), we obtain \(n \geq \frac{2^{2D-1}}{D^{2D(D-1)}}\), indicating a double exponential dependency with respect to \(D\). For instance, for \(D = 20\), \(n \geq 10^{156837}\). Consequently, the regret is \(\Omega(\exp(\exp(D)))\).\\
+
+For the logarithmic confidence sequence defined by (1), we similarly show \(n_{d-1} \geq \exp(n_d/(2D^2))\), thus:
+\[ 
 n \geq \exp(\exp(\cdots \exp(2) \cdots)) \quad (\text{composition of } D - 1 \text{ exponential functions}).
 \]
-Thus, although UCT algorithm has asymptotically regret \(O(\log(n))\) in \(n\), (or \(O(\sqrt{n})\) for the square root sequence), the transitory regret is \(\Omega(\exp(\exp(\cdots \exp(2) \cdots)))\) (or \(\Omega(\exp(\exp(D)))\) in the square root sequence).\\
+Therefore, although the UCT algorithm has asymptotic regret \(O(\log(n))\) in \(n\) (or \(O(\sqrt{n})\) for the square root sequence), the transitory regret is \(\Omega(\exp(\exp(\cdots \exp(2) \cdots)))\) (or \(\Omega(\exp(\exp(D)))\) in the square root sequence).
+\end{proof}
 The reason for this bad behavior is that the algorithm is too optimistic (it does not explore enough and may take a very long time to discover good branches that looked initially bad) since the bounds (1) and (2) are not true upper bounds.\\
 \section{Learning in MCTS}
 \subsection{Temporal Difference Learning}
@@ -343,14 +374,12 @@ Here we show the psuedo code for the TD learning algorithm:
     \end{algorithmic}
     \label{alg:td}
 \end{breakablealgorithm} 
-the algorithm \ref{alg:td} shows a typical kind of TD learning algorithm. The $\alpha$ is the learning rate, $\gamma$ is the discount factor. $r$ refers to the immediate reward at current state and $s'$ is the next state.\\
-\textbf{Intuition} The main difference between the TD learning algorithm and the MCTS algorithm is that the TD learning algorithm learns the value function by bootstrapping, which means that TD does not need a model of the environment. It will obtain the reward by the environment and update the value function.\\
-\textbf{Problems} Gerald Tesauro proposes that \cite{tesauro1991practical} the TD learning algorithm has a problem of high variance. The reason is that the TD learning algorithm uses the reward received from the environment to update the value function. The reward is often noisy and may not be accurate. This leads to a high variance in the value function. Additionally. In fact, TD methods can suffer from instability and divergence, especially when combined with function approximation and off-policy learning.\\
-As a result, when Gerald Tesauro trains the TD learning algorithm to play backgammon, his network (a feedforward fully-connected architecture with either no hidden
-units, or a single hidden layer with between 10 and 40 hidden units) had only $40\%$ to $60\%$ win rate against the best human players.\\
-The TDMC algorithm is given by Yasuhiro OSAKI \cite{5035641}.\\
-\textbf{Intuition} The main idea of TDMC is to use the Monte Carlo method to estimate the value function and approximate the winning rate for each state without knowing the actual action. The main difference between TDMC and TD is that TDMC uses Monte Carlo simulations to estimate the value function. This approach reduces the variance in the value function estimation by averaging the results of multiple simulations. By running multiple simulations from a given state, TDMC can obtain a more accurate estimate of the expected reward, leading to better policy evaluation and improvement. This method combines the strengths of both Temporal Difference learning and Monte Carlo methods, providing a more stable and reliable learning process.\\
-Now we show the psuedo code for the TDMC algorithm:
+The algorithm \ref{alg:td} illustrates a typical TD learning algorithm, where $\alpha$ represents the learning rate, $\gamma$ is the discount factor, $r$ denotes the immediate reward, and $s'$ is the subsequent state.\\
+\textbf{Intuition:} Unlike MCTS, the TD learning algorithm updates the value function through bootstrapping, meaning it does not require a model of the environment. Instead, it directly uses the rewards obtained from the environment to update the value function.\\
+\textbf{Challenges:} Gerald Tesauro highlighted in \cite{tesauro1991practical} that the TD learning algorithm suffers from high variance due to the noisy and often inaccurate rewards from the environment. This high variance can lead to instability and divergence, particularly when combined with function approximation and off-policy learning. For instance, when Tesauro trained the TD learning algorithm to play backgammon, the network (a feedforward fully-connected architecture with either no hidden units or a single hidden layer with 10 to 40 hidden units) achieved only a 40\% to 60\% win rate against top human players.\\
+The TDMC algorithm, proposed by Yasuhiro OSAKI \cite{5035641}, addresses these issues.\\
+\textbf{Intuition:} TDMC leverages Monte Carlo simulations to estimate the value function, thereby reducing variance by averaging the results of multiple simulations. This approach provides a more accurate estimate of the expected reward, enhancing policy evaluation and improvement. By combining the strengths of Temporal Difference learning and Monte Carlo methods, TDMC offers a more stable and reliable learning process.\\
+Below is the pseudocode for the TDMC algorithm:
 \begin{breakablealgorithm}
     \caption{TDMC Algorithm}
     \begin{algorithmic}[1]
@@ -377,18 +406,18 @@ Now we show the psuedo code for the TDMC algorithm:
     \end{algorithmic}
 \end{breakablealgorithm}
 \subsection{Single-Player MCTS}
-The article \cite{schadd2008single} points out that modern MCTS has been rarely used on single-player games. Thus, they modify the UCT and apply it in the SameGame.\\
-Firstly, they mentioned that traditional $A^*$ or $IDA^*$(a variation of $A^*$ that uses a depth-first search to avoid storing whole tree in the memory) search algorithm does not work well in this kind of task since "Both methods are heavily dependent on the quality of the evaluation function".\\
-SP-MCTS change the Seletion Strategy of UCT to 
-\[
-    \frac{Q(v')}{N(v')}+C\cdot\sqrt{\frac{\log N(v)}{N(v')}}+\sqrt{\frac{\sum_{u\text{ is v's descendent}}N(u)^2-Q(v')^2/N(v')+D}{N(v')}}
+The article \cite{schadd2008single} highlights the limited application of modern MCTS in single-player games and proposes modifications to the UCT algorithm for the SameGame. Traditional search algorithms like $A^*$ and $IDA^*$ are less effective in this context due to their reliance on evaluation functions. SP-MCTS modifies the UCT selection strategy as follows:
+\[ 
+\frac{Q(v')}{N(v')} + C \sqrt{\frac{\log N(v)}{N(v')}} + \sqrt{\frac{\sum_{u \text{ is v's descendent}} N(u)^2 - Q(v')^2 / N(v') + D}{N(v')}}
 \]
-Note that $\sum_{u\text{ is v's descendent}}N(u)^2-Q(v')^2/N(v')$ means the variants at the node $v$, representing the possible deviation of the child node.\\
-\textbf{Intuitions}: below we introduce the main difference of SP-MCTS and traiditional MCTS\\ 
-\texttt{Selection Policy} Comparing to two-player games, puzzle games(one player games) have a different score range. Typically, two-player games results in -1(lose), 0(draw) and 1(win), we can relax them into $[-1,1]$ when maximizing the win rate. However, since we can not define a win rate in puzzle games (actually we are maximizing reward we get), the final reward may have a higher upper bound(sometimes even unbounded). Thus we need properly find $C$ and $D$ to fit the reward range (equivalent to scale the reward interval back to $[-1,1]$).\\
-\texttt{Simulation Strategy}: A "TabuRandom" Strategy is used here to improve the quality of random simulation: randomly select a color, that kind of color is not allowed to play unless no other color can be played..\\
-\texttt{Back-Propogation Strategy}: We back-propogate: the average score of a node; the sum of the squared results; and the best score achieved so far.\\
-\texttt{Final Play}: We do not need to wait the response of another player. Thus we can search the whole process at the starter of the game.
+Here, $\sum_{u \text{ is v's descendent}} N(u)^2 - Q(v')^2 / N(v')$ represents the variance at node $v$, indicating potential deviations of the child node.\\
+\textbf{Key Differences and Intuitions:}
+\begin{itemize}
+    \item \texttt{Selection Policy}: Unlike two-player games with bounded scores, single-player games often have unbounded rewards. Proper scaling of $C$ and $D$ is necessary to fit the reward range.
+    \item \texttt{Simulation Strategy}: Utilizes a "TabuRandom" strategy to enhance random simulations by prohibiting the selection of a randomly chosen color unless no other moves are available.
+    \item \texttt{Back-Propagation Strategy}: Propagates the average score, the sum of squared results, and the best score achieved so far.
+    \item \texttt{Final Play}: Allows for complete process search at the game's start, eliminating the need to wait for another player's response.
+\end{itemize}
 \section{UCT-based algorithm and Tree MCTS}
 \subsection{UCB1-tuned}
 The UCB1-Tuned algorithm is an enhancement suggested by Auer et al. \cite{auer2002finite} to tune the bounds of UCB1 more finely. It replaces the upper confidence bound $\sqrt{\frac{2 \ln n}{n_j}}$ with:
@@ -459,7 +488,11 @@ Bayes-UCT2 is
 Where we choose $\sigma_i$ as the mean square root of the variance of $P_i$, $\sigma^2\sim\frac{1}{n_i}$\\
 Note that Tesauro mentioned that the first equation is a strictly improvement towards UCT if the independence assumption
 and leaf node priors are correct.\\
-\textbf{Theorem} central limit theorem: whenever the initial distribution is, as long as we sample many times, the distribution of the sample mean will converge to a normal distribution.\\
+\begin{framedminipage}
+\begin{thm} 
+central limit theorem: whenever the initial distribution is, as long as we sample many times, the distribution of the sample mean will converge to a normal distribution.
+\end{thm}
+\end{framedminipage}
 Based on thie central limit theorem, they use Bayes-UCT2 to estimate the value of the node.\\
 \textbf{Methodology}: they use beta function priors $x^{\alpha-1}(1-x)^{\beta-1}/B(\alpha,\beta)$, where $\alpha$ and $\beta$ is effectively the number of wins and losses. In the 0/1 cases, after $W$ sample wins and $L$ samples losses, we add $W$ to $\alpha$ and $L$ to $\beta$. The back propogation part is same:
 \[
@@ -467,8 +500,11 @@ Based on thie central limit theorem, they use Bayes-UCT2 to estimate the value o
 \]
 Where $C_j(x)$ is the CDF of $P_j$ i.e. $C_\text{max}=\int P_\text{max}(X)dX$, $C_\text{max}(X)=\prod_i C_i(X)$, min part is similar.\\
 \textbf{Convergence Proof} (proof sketches, from \cite{tesauro2012bayesian}):\\
-\textbf{Lemma 1} Consider a bandit arm leaf node which generates 0/1 payoffs at a true win rate of $\mu^*$ such that $0 < \mu^* < 1$. Assume a prior probability distribution $P_{\text{prior}}(p)$ which is strictly positive on $(0, 1)$ and which has bounded derivatives. Then as the number of samples $n \to \infty$, the posterior distribution $P_{\text{post}}(p)$ converges to $\delta(p - \mu^*)$ with probability 1.\\
-\textbf{Lemma 1 Proof Sketch} Write the posterior by Bayes' theorem,
+\begin{framedminipage}
+\begin{lem} Consider a bandit arm leaf node which generates 0/1 payoffs at a true win rate of $\mu^*$ such that $0 < \mu^* < 1$. Assume a prior probability distribution $P_{\text{prior}}(p)$ which is strictly positive on $(0, 1)$ and which has bounded derivatives. Then as the number of samples $n \to \infty$, the posterior distribution $P_{\text{post}}(p)$ converges to $\delta(p - \mu^*)$ with probability 1.
+\end{lem}
+\end{framedminipage}
+\begin{proof} Write the posterior by Bayes' theorem,
 \[
 P_{\text{post}}(p) = \frac{P_{\text{prior}}(p) \cdot P(\text{data} \mid p)}{P(\text{data})}
 \]
@@ -500,9 +536,12 @@ At \(p = \mu^*\),
 \[
 \frac{d^2}{dp^2} \log P_{\text{post}}(p) = -\frac{n}{\mu^*(1 - \mu^*)} + O(\sqrt{n})
 \]
-Thus, the posterior approaches a Gaussian with mean \(\mu^*\) and variance \(\mu^*(1 - \mu^*)/n\) as \(n \to \infty\).\\
-\textbf{Theorem 1:} (Off-policy convergence) Consider a fixed finite-sized bandit tree with binary reward leaf nodes and priors as per Lemma 1. Assume no two sibling nodes have exactly identical minimax payoff rates. Then for any sampling policy $\Pi$ (e.g., uniform random sampling) that samples all leaf nodes an unbounded number of times as the total number of samples $N \to \infty$, all interior node posterior distributions converge with probability 1 to delta functions at the minimax optimal values.\\
-\textbf{Theorem 1 Proof Sketch} Consider a parent node \(v\) with child nodes \(v_1, v_2, \ldots, v_k\). Assume that each child node \(v_i\) has a posterior distribution \(P_i\) that converges to a delta function at the correct minimax value \(\mu_i^*\). That is, \(P_i \to \delta(p - \mu_i^*)\) as the number of samples \(n \to \infty\).\\
+Thus, the posterior approaches a Gaussian with mean \(\mu^*\) and variance \(\mu^*(1 - \mu^*)/n\) as \(n \to \infty\).\end{proof}
+\begin{framedminipage}
+\begin{thm} (Off-policy convergence) Consider a fixed finite-sized bandit tree with binary reward leaf nodes and priors as per Lemma 1. Assume no two sibling nodes have exactly identical minimax payoff rates. Then for any sampling policy $\Pi$ (e.g., uniform random sampling) that samples all leaf nodes an unbounded number of times as the total number of samples $N \to \infty$, all interior node posterior distributions converge with probability 1 to delta functions at the minimax optimal values.
+\end{thm}
+\end{framedminipage}
+\begin{proof} Consider a parent node \(v\) with child nodes \(v_1, v_2, \ldots, v_k\). Assume that each child node \(v_i\) has a posterior distribution \(P_i\) that converges to a delta function at the correct minimax value \(\mu_i^*\). That is, \(P_i \to \delta(p - \mu_i^*)\) as the number of samples \(n \to \infty\).\\
 For a MAX node, the value of the parent node \(v\) is determined by the maximum value among its children:
 \[
 \mu_v = \max(\mu_1, \mu_2, \ldots, \mu_k)
@@ -520,8 +559,12 @@ The parent's distribution \(P_v\) will converge to the distribution of the child
 P_v \to \delta(p - \min(\mu_1^*, \mu_2^*, \ldots, \mu_k^*))
 \]
 By induction, starting from the leaf nodes and moving up the tree, we can show that all interior nodes' distributions converge to delta functions at the correct minimax values. This completes the proof.
-\textbf{Theorem 2:} (On-policy convergence) For the sampling policy specified in Bayes-UCT2: maximize \(B_i = \mu_i + \sqrt{2 \ln N} \sigma_i\), all interior nodes converge with probability 1 to correct minimax optimal point values.\\
-\textbf{Proof Sketch:} First of all, all points have non-vanishing variance.\\
+\end{proof}
+\begin{framedminipage}
+\begin{thm} (On-policy convergence) For the sampling policy specified in Bayes-UCT2: maximize \(B_i = \mu_i + \sqrt{2 \ln N} \sigma_i\), all interior nodes converge with probability 1 to correct minimax optimal point values.
+\end{thm}
+\end{framedminipage}
+\begin{proof} First of all, all points have non-vanishing variance.\\
 Secondly, we show that if the children have a point all have non-vanishing variance, the parent will have a non-vanishing variance.\\
 \[
     \mu_v=\max(\mu_1,\mu_2,\ldots,\mu_k)
@@ -530,16 +573,15 @@ There is a $j\in\{1,2\ldots,k\}$ with $\frac{1}{k}$ of the sampling, $\mu_v=\mu_
 ﬁnite variance.\\
 Now let's consider the sitiuation that one node remains unsampled, while its parens and siblings receive infinite samples. Note that in this sitiuation, the term \(B_i = \mu_i + \sqrt{2 \ln N} \sigma_i\) for this point will grow without bounds, while all other siblings have a bounded value(converge to the true value). Thus, all points will be sampled.\\
 Also, note that in an infinite process, if a point is sampled for only finite times, with its siblings sampled for infinite times, the point will be sampled for infinite times. (Otherwise its $B_i$ is unbounded).\\
-Apply \textbf{Theorem 1} here, we know that all points converge to their true mean.\\
-\textbf{Gaussian Approximation} The potential disadvantage of Gaussian approximation is that approximation errors could arise due to two sources. First, the leaf node distributions may have very few trials and may have certain priors (such as a uniform prior) that are poorly approximated by Gaussians. Secondly, it is known that the Gaussian family is not closed under the max operation, and making such an approximation may introduce further error. Closed-form analytic expressions for the mean $\mu$ and variance $\sigma^2$ of the maximum distribution of two Gaussian random variables were first calculated by Clarke in \cite{clark1961greatest}. Let $\mu_1, \mu_2$ denote means and $\sigma_1, \sigma_2$ denote the standard deviations of two input Gaussians with correlation coefficient $\rho$. Expanding the moment generating function yields the following expressions:
+Apply \textbf{Off-Policy Convergence Proof} here, we know that all points converge to their true mean.\\
+\end{proof}
+\textbf{Gaussian Approximation} Gaussian approximation may introduce errors due to two main factors. Firstly, leaf node distributions with limited trials and certain priors (e.g., uniform priors) may not be well-represented by Gaussians. Secondly, the Gaussian family is not closed under the max operation, potentially introducing further errors. Clarke \cite{clark1961greatest} derived closed-form expressions for the mean $\mu$ and variance $\sigma^2$ of the maximum distribution of two Gaussian random variables. Let $\mu_1, \mu_2$ be the means and $\sigma_1, \sigma_2$ the standard deviations of two input Gaussians with correlation coefficient $\rho$. The moment generating function expansion provides the following expressions:
 \[
 \mu = \mu_1\Phi(\alpha) + \mu_2\Phi(-\alpha) + \phi(\alpha)\sigma_m
 \]
-
 \[
 \sigma^2 = (\mu_1^2 + \sigma_1^2)\Phi(\alpha) + (\mu_2^2 + \sigma_2^2)\Phi(-\alpha) + (\mu_1 + \mu_2)\sigma_m\phi(\alpha) - \mu^2
 \]
-
 where $\sigma_m = \sqrt{\sigma_1^2 - 2\rho\sigma_1\sigma_2 + \sigma_2^2}$, $\alpha = \frac{\mu_1 - \mu_2}{\sigma_m}$, $\phi()$ denotes a standard Gaussian PDF with zero mean and unit variance, and $\Phi()$ denotes the CDF of $\phi()$.\\
 It could also be written as 
 \[
@@ -549,8 +591,7 @@ It could also be written as
     \text{Where }F_1(\alpha)=\alpha\Phi(\alpha)+\phi(\alpha); F_2(\alpha)=\alpha^2\Phi(\alpha)(1-\Phi(\alpha))+(1-2\Phi(\alpha))\alpha\phi(\alpha)-\phi(\alpha)^2
 \]
 \subsection{First Play Urgency}
-FPU is a modification to MCTS proposed by \cite{gelly2006exploration}. It modifies the UCT algorithm for those unexplored points. Also, some tricks for training and saving data are mentioned: we only store those points that have been visited for more than twice(since each point will have a inifinite large UCB1 value for the first time).\\
-The psuedo code for the FPU algorithm is as follows:
+FPU, proposed by \cite{gelly2006exploration}, is an enhancement to MCTS that addresses unexplored nodes. It modifies the UCT algorithm to handle these nodes more effectively. Additionally, it incorporates strategies for efficient training and data storage, such as only retaining nodes that have been visited more than twice to avoid the initial infinite UCB1 value. The pseudocode for the FPU algorithm is as follows:
 \begin{breakablealgorithm}
 \caption{FPU}
 \begin{algorithmic}[1]
@@ -569,28 +610,26 @@ The psuedo code for the FPU algorithm is as follows:
 \end{breakablealgorithm}
 The final algorithm FPU use is UCB1-tuned, which is also included in our final implementation.\\
 \section{Experiment}
-In this part, to test the performance of different algorithms, I implement some games, train the model with certain epochs and let different algorithm to play against in the game.\\
+In this section, we evaluate the performance of various algorithms through a series of games. We train models over a specified number of epochs and then have different algorithms compete against each other.\\
 \subsection{Introduction}
-The definitions are as follows:
+The key terms are defined as follows:
 \begin{itemize}
-    \item selection: the algorithm selected to train the model.
-    \item game: the game that the algorithm will play.
-    \item max-iter: the maximum computational budget for the algorithm (Can explore how many nodes in each training epoch)
-    \item epochs: a certain value that the algorithm will train the model.
+    \item \textbf{Selection}: The algorithm chosen to train the model.
+    \item \textbf{Game}: The game in which the algorithm will compete.
+    \item \textbf{Max-iter}: The maximum computational budget for the algorithm, indicating how many nodes can be explored in each training epoch.
+    \item \textbf{Epochs}: The number of iterations the algorithm will train the model.
 \end{itemize}
-You can see the codes in \texttt{https://github.com/liuhanzuo/algorithm-design-survey}
-We introduce the experiment by a game called \textbf{Game: Tic-Tac-Toe}.\\
-The Tic-Tac-Toe is a simple game that two players take turns to place their mark on a 3x3 board. The player who first places three marks in a row, column, or diagonal wins the game. The game ends in a draw if the board is full and no player has won.\\
-\subsection{Main Codes}
-The repository is divided into several parts:
+The code is available at \texttt{https://github.com/liuhanzuo/algorithm-design-survey}.\\
+We introduce the experiment using the game \textbf{Tic-Tac-Toe}. Tic-Tac-Toe is a simple game where two players alternately place their marks on a 3x3 grid. The objective is to be the first to align three marks horizontally, vertically, or diagonally. The game results in a draw if the grid is filled without any player achieving this alignment.
+The repository is organized into several components:
 \begin{itemize}
-    \item \texttt{node.py}: definition of basic element: node, which stores the running sitiuation, parameters(such as current board, value, win time etc.)
-    \item \texttt{tictactoe.py}: game class, provide function for user move and board update etc.
-    \item \texttt{agents.py}: implement different search algorithm, we use reward, visited, beta(random exploration with rate $\beta$), UCT, and UCB1-tuned here
-    \item \texttt{gaming.py}: use agents to play the game, first train them for several epochs(1000 in practice) then play against each other(1000 games in practice), test the win, lose and draw rate.
-    \item \texttt{gui.py}: provide a GUI for user to play the game.
-    \item \texttt{mcts.py}: testing and ploting program.
-    \item \texttt{palyground.py}: a playground for user-AI interaction game.
+    \item \texttt{node.py}: Defines the basic element, node, which stores the current state, parameters (such as the current board, value, win count, etc.).
+    \item \texttt{tictactoe.py}: Implements the game class, providing functions for user moves and board updates.
+    \item \texttt{agents.py}: Implements various search algorithms, including reward-based, visited-based, beta (random exploration with rate $\beta$), UCT, and UCB1-tuned.
+    \item \texttt{gaming.py}: Utilizes agents to play the game, training them over several epochs (1000 in practice) and then having them compete against each other (1000 games in practice) to test win, loss, and draw rates.
+    \item \texttt{gui.py}: Provides a graphical user interface for user interaction with the game.
+    \item \texttt{mcts.py}: Contains testing and plotting programs.
+    \item \texttt{playground.py}: Serves as a playground for user-AI interaction games.
 \end{itemize}
 \subsection{Results}
 Our result here is listed as \texttt{win rate},\texttt{lose rate},\texttt{draw rate}.\\
@@ -676,32 +715,73 @@ Next, we show different strategies' performance comparison under different epoch
     \end{minipage}
 \end{figure}
 For more result, you can look at the repository, the \texttt{mcts/figs} directory contains all test result and we can not list all of them due to the limitation of space.
-\subsection{Conclusion}
-From both the table and graph, we can see that UCT and UCB1-tuned have a state-of-the-art result, outperform other kinds of search algorithm. As the FPU mentioned, UCB1-tuned is indeed a better algorithm in application that can handle unexplored nodes and save memory better.\\
-Also, since tictactoe is a relative simple game and easy to get a draw if the agents have a strong prediction power, we can see that the draw rate is higher with a deeper search.
+\subsection{Conlucsion}
+The results from both the table and graph indicate that UCT and UCB1-tuned algorithms achieve state-of-the-art performance, surpassing other search algorithms. As highlighted by the FPU, UCB1-tuned effectively handles unexplored nodes and optimizes memory usage. Additionally, given the simplicity of Tic-Tac-Toe and the high likelihood of a draw when agents possess strong predictive capabilities, the draw rate increases with deeper searches.
 \section{Gobang}
 \subsection{Introduction}
-In this task, we mainly combine the algorithm of UCTtuned(the algorithm that I finetuned) and UCT in the game of Gobang.\\
-Since the board of Gobang is larger than tictactoe, we can evaluate different kind of search algorithm's ability better.
-\subsection{New Algorithm}
-To balance the exploration weight for different nodes better, we combine the UCT and SP-MCTS algorithm. I notice that the main part tuned in SP-MCTS is the variance tail. Since we are playing a two-player game, we do not need a hyperparameter $D$ at the summation part. Instead of that, we multiple the variance tail with a hyperparameter $D$.
-\[
-    \arg\max_{v'\in\text{children(v)}}\left(\frac{Q(v')}{N(v')}+C\cdot\sqrt{\frac{\log N(v)}{N(v')}}+D\cdot var(\frac{N(u)\text{ where u is v's descendent}}{N(v)})\right)
+In this task, we integrate the UCT-tuned algorithm (a refined version of UCT) with the standard UCT algorithm to evaluate their performance in the game of Gobang. Given the larger board size of Gobang compared to Tic-Tac-Toe, this setup provides a more rigorous assessment of the search algorithms' capabilities.
+\subsection{Experimental New SOTA Algorithm: UCT-tuned}
+To better balance exploration weights across different nodes, we integrate the UCT and SP-MCTS algorithms. The primary adjustment in SP-MCTS involves the variance tail. For our two-player game, we eliminate the hyperparameter $D$ in the summation part and instead multiply the variance tail by a hyperparameter $D$:
+\[ 
+\arg\max_{v'\in\text{children(v)}}\left(\frac{Q(v')}{N(v')}+\sqrt{\frac{\log N(v)}{N(v')}\cdot\min\{C,\frac{V(v')}{N(v')}+\sqrt{\frac{2\log N(v)}{N(v')}\}}}+D\cdot f(v)\right)
 \]
+\[
+    f(v)=var\left(N(u)\text{ where }u\text{ is a descendent of }v\right)
+\]
+\textbf{Intuition}: Initially, $\min\{C,\frac{V(v')}{N(v')}+\sqrt{\frac{2\log N(v)}{N(v')}\}}$ balances low-explored states and higher win probabilities. As exploration progresses, the variance tail indicates node confidence; an optimal solution should exhibit higher variance, reflecting certainty in subsequent steps. In our experiments, we set $C=0.25$ and $D=2500$, based on parameters from UCB1-tuned and SP-MCTS literature.
 \subsection{Main Code}
 \begin{itemize}
-    \item \texttt{Board.py}: definition of the board, provide function for user move and board update etc.
-    \item \texttt{Node.py}: Basic MCTS node, used for tree updating
-    \item \texttt{MCTS.py}: MCTS Algorithms, used for decide node expansion and back-propogation algorithm
-    \item \texttt{Players.py}: Player Agents, used for playground GUI or AI vs AI evaluation 
+    \item \texttt{Board.py}: Defines the board and provides functions for user moves and board updates.
+    \item \texttt{Node.py}: Implements the basic MCTS node for tree updates.
+    \item \texttt{MCTS.py}: Contains MCTS algorithms for node expansion and backpropagation.
+    \item \texttt{Players.py}: Implements player agents for GUI interactions and AI vs AI evaluations.
 \end{itemize}
+\subsection{Results}
+We run the experiment under a  $12*12$ board with 5 chess pieces Gobang, and compare our algorithm UCT-tuned with current SOTA: UCT, the result is as follows:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            title={Algorithm Performance Comparison},
+            xlabel={Iterations},
+            ylabel={Win Rate (\%)},
+            width=\linewidth,
+            height=0.75\linewidth,
+            legend pos=north west,
+            ymajorgrids=true,
+            grid style=dashed,
+        ]
+        \addplot[
+            color=blue,
+            mark=square,
+            ]
+            coordinates {
+            (100, 69.6)(200, 72.2)(300, 75.0)(400,52.4)(500, 50.4)(600, 72.1)(700, 82.8)(800, 77.8)(900, 76.6)(1000, 78.8)(1100, 81.6)(1200, 81.4)(1300, 79.4)(1400, 81.7)(1500, 82.4)(1600, 82.8)(1700, 84.8)(1800, 83.9)(1900, 85.1)(2000, 86.9)
+            };
+            \addlegendentry{UCT-tuned}
+        \addplot[
+            color=red,
+            mark=triangle,
+            ]
+            coordinates {
+            (100, 30.3)(200, 27.7)(300, 25.0)(400, 47.6)(500, 49.6)(600, 27.9)(700, 17.2)(800, 22.2)(900, 13.4)(1000,21.2)(1100,18.4)(1200, 18.6)(1300,20.6)(1400,18.3)(1500, 17.6)(1600, 17.2)(1700, 15.2)(1800, 16.1)(1900, 14.9)(2000,13.1)
+            };
+            \addlegendentry{UCT}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Win Rate Comparison of UCT and UCT-tuned Algorithms}
+    \label{fig:algorithm_comparison}
+\end{figure}
+The figure illustrates that the UCT-tuned algorithm exhibits a performance dip between 400-500 iterations compared to UCT. This fluctuation supports our hypothesis: the $\min$ term aids in early exploration, while the variance term enhances performance with sufficient iterations, ultimately leading to a higher win rate for UCT-tuned.\\
+Additionally, the results demonstrate that UCT-tuned consistently outperforms UCT in terms of win rate as the number of iterations increases. This indicates that the modifications introduced in UCT-tuned, such as the variance tail and adjusted exploration-exploitation balance, provide significant advantages in more complex game scenarios like Gobang. The higher win rates achieved by UCT-tuned in later iterations suggest that it is more effective at identifying and exploiting optimal strategies over time.\\
+Overall, the experimental results validate the effectiveness of the UCT-tuned algorithm, highlighting its potential as a superior alternative to traditional UCT in various applications. The integration of advanced techniques and careful parameter tuning in UCT-tuned contribute to its enhanced performance, making it a valuable tool for decision-making in complex environments.
 \section{Conclusion}
-In this survey, we have delved into the intricacies of Monte Carlo Tree Search (MCTS), exploring its foundational concepts, various algorithmic implementations, and practical applications. We began by discussing the background of MCTS, including the essential elements of Markov Decision Processes (MDP) and Monte Carlo methods. This provided a solid foundation for understanding how MCTS operates and its relevance in decision-making processes.\\
-We then introduced the general MCTS algorithm, breaking down its four main steps: selection, expansion, simulation, and backpropagation. This was followed by a detailed examination of specific MCTS variants, such as reward-based MCTS, visited-based MCTS, and hybrid MCTS, highlighting their unique approaches to balancing exploration and exploitation.\\
-The survey also covered state-of-the-art algorithms like UCT (Upper Confidence bounds for Trees) and its variations, including UCB1-tuned and Bayesian UCT. These algorithms were analyzed in terms of their theoretical underpinnings, practical implementations, and performance improvements over basic MCTS.\\
-Furthermore, we explored the integration of learning techniques within MCTS, such as Temporal Difference (TD) learning and its Monte Carlo variant (TDMC). These methods enhance the MCTS framework by incorporating value function approximations and reducing variance in value estimation.\\
-Our experimental results, particularly in the context of the Tic-Tac-Toe game, demonstrated the effectiveness of advanced MCTS algorithms like UCT and UCB1-tuned. These algorithms consistently outperformed simpler variants, showcasing their robustness and adaptability in various scenarios.\\
-In conclusion, MCTS remains a powerful and versatile tool in the realm of artificial intelligence and decision-making. Its ability to balance exploration and exploitation, coupled with advancements in algorithmic strategies, ensures its continued relevance and applicability in solving complex problems. Future research and development in this field will likely yield even more sophisticated and efficient algorithms, further expanding the horizons of what MCTS can achieve.
+In this survey, we have explored the intricacies of Monte Carlo Tree Search (MCTS), examining its foundational concepts, algorithmic implementations, and practical applications. We began by discussing the background of MCTS, including the essential elements of Markov Decision Processes (MDP) and Monte Carlo methods, providing a solid foundation for understanding MCTS's operation and relevance in decision-making processes.\\
+We introduced the general MCTS algorithm, detailing its four main steps: selection, expansion, simulation, and backpropagation. This was followed by an examination of specific MCTS variants, such as reward-based, visited-based, and hybrid MCTS, highlighting their unique approaches to balancing exploration and exploitation.\\
+The survey also covered state-of-the-art algorithms like UCT (Upper Confidence bounds for Trees) and its variations, including UCB1-tuned and Bayesian UCT, analyzing their theoretical foundations, practical implementations, and performance improvements over basic MCTS.\\
+Furthermore, we explored the integration of learning techniques within MCTS, such as Temporal Difference (TD) learning and its Monte Carlo variant (TDMC), which enhance the MCTS framework by incorporating value function approximations and reducing variance in value estimation.\\
+Our experimental results, particularly in the context of the Tic-Tac-Toe game, demonstrated the effectiveness of advanced MCTS algorithms like UCT and UCB1-tuned, which consistently outperformed simpler variants, showcasing their robustness and adaptability in various scenarios.\\
+In conclusion, MCTS remains a powerful and versatile tool in artificial intelligence and decision-making. Its ability to balance exploration and exploitation, coupled with advancements in algorithmic strategies, ensures its continued relevance and applicability in solving complex problems. Future research will likely yield even more sophisticated and efficient algorithms, further expanding the horizons of MCTS.
 \bibliography{reference}
 \bibliographystyle{plain}
 \end{document}
