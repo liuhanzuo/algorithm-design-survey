@@ -5,7 +5,7 @@ num_in_a_row_will_win = 5     # 几子棋
 
 class Board:
 
-    def __init__(self, board=None, size=8, next_player=-1):
+    def __init__(self, board=None, size=12, next_player=-1):
         self.size = size 
         self.board = np.zeros((self.size, self.size), int) if board is None else board    
 

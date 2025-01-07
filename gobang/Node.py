@@ -77,14 +77,19 @@ class TreeNode:
         ]))
         best_index = np.argmax(ucb1tuned_of_children)
         return self.children[best_index]
-    def best_uct_tuned(self, c_param=1.98, d_param=1):
-        uct_of_children = np.array(list([
-            (child.num_of_win() / child.num_of_visit) + c_param * np.sqrt(np.log(self.num_of_visit) / child.num_of_visit + d_param * np.var([c.num_of_win() / c.num_of_visit for c in self.children]))
+    def best_uct_tuned(self, c_param=1.98, d_param=0.25):
+        uct_tuned_of_children = np.array(list([
+            (child.num_of_win() / child.num_of_visit) + c_param * np.sqrt(np.log(self.num_of_visit) / child.num_of_visit + d_param * np.sqrt(np.var([c.num_of_win() / c.num_of_visit for c in self.children])))
+            for child in self.children
+        ]))     
+        best_index = np.argmax(uct_tuned_of_children)    
+        return self.children[best_index]
+    def best_ucb1(self, c_param=0.25, d_param=2000):
+        ucb1_of_children = np.array(list([
+            (child.num_of_win() / child.num_of_visit) + np.sqrt(np.log(self.num_of_visit) / child.num_of_visit)*min(c_param, child.num_of_visit/self.num_of_visit+np.sqrt(2*np.log(self.num_of_visit)/child.num_of_visit))+d_param*np.sqrt(np.var([c.num_of_win() / c.num_of_visit for c in self.children]))
             for child in self.children
         ]))
-        max_uct = max(uct_of_children)
-        best_index = np.where(uct_of_children == max_uct)     
-        best_index = np.random.choice(best_index[0])       
+        best_index = np.argmax(ucb1_of_children)
         return self.children[best_index]
     def best_visited(self):
         visit_num_of_children = np.array(list([child.num_of_visit for child in self.children]))
